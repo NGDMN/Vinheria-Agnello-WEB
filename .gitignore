@@ -1,0 +1,22 @@
+# Credenciais
+.env
+.env.*
+!.env.example
+
+# Maven
+target/
+
+# IDEs
+.idea/
+*.iml
+.vscode/
+.settings/
+.classpath
+.project
+
+# Sistema operacional
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
