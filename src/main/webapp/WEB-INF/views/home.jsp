@@ -61,10 +61,7 @@
                                                     <c:out value="${vinho.nome}" />
                                                 </h3>
                                                 <p class="vinho-origem">
-                                                    <c:out value="${vinho.pais}" />
-                                                    <c:if test="${not empty vinho.regiao}">,
-                                                        <c:out value="${vinho.regiao}" />
-                                                    </c:if>
+                                                    <c:out value="${vinho.pais}${empty vinho.regiao ? '' : ', '}${vinho.regiao}" />
                                                 </p>
                                                 <p class="vinho-uva">
                                                     <c:out value="${vinho.uva}" />

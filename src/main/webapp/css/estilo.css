@@ -37,7 +37,9 @@ body {
     background: var(--creme);
 }
 
-h1, h2, h3 {
+h1,
+h2,
+h3 {
     font-family: var(--fonte-titulo);
     font-weight: 600;
     line-height: 1.2;
@@ -282,16 +284,14 @@ a:hover {
 
 .vinho-imagem {
     position: relative;
-    aspect-ratio: 3 / 4;
-    background: var(--creme-escuro);
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    height: 18rem;
+    background: var(--branco);
+    border-bottom: 1px solid var(--creme-escuro);
 }
 
 .vinho-imagem img {
-    max-width: 100%;
-    max-height: 100%;
+    width: 100%;
+    height: 100%;
     object-fit: contain;
     padding: 1rem;
 }
