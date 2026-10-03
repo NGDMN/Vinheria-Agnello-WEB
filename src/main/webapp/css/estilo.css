@@ -1,0 +1,416 @@
+/* =============================================
+   Vinheria Agnello - estilo
+   ============================================= */
+
+:root {
+    --bordo: #6B1E2E;
+    --bordo-escuro: #4A1420;
+    --dourado: #C9A24B;
+    --creme: #F7F1E8;
+    --creme-escuro: #EDE3D3;
+    --branco: #FFFFFF;
+    --texto: #2B1A1A;
+    --texto-secundario: #6E5E5E;
+    --borda: #DCCFBD;
+    --erro: #B3261E;
+    --sucesso: #2E6B3A;
+    --esgotado: #9E9E9E;
+
+    --fonte-titulo: "Playfair Display", Georgia, "Times New Roman", serif;
+    --fonte-corpo: "Inter", "Segoe UI", Roboto, Arial, sans-serif;
+
+    --raio: 6px;
+}
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: var(--fonte-corpo);
+    font-size: 1rem;
+    line-height: 1.55;
+    color: var(--texto);
+    background: var(--creme);
+}
+
+h1, h2, h3 {
+    font-family: var(--fonte-titulo);
+    font-weight: 600;
+    line-height: 1.2;
+    margin: 0;
+}
+
+a {
+    color: var(--bordo);
+    font-weight: 500;
+}
+
+a:hover {
+    color: var(--bordo-escuro);
+}
+
+:focus-visible {
+    outline: 3px solid var(--dourado);
+    outline-offset: 2px;
+}
+
+/* ---------- Botoes ---------- */
+
+.botao {
+    font: inherit;
+    font-weight: 600;
+    border: none;
+    border-radius: var(--raio);
+    cursor: pointer;
+    padding: 0.8rem 1.4rem;
+    transition: background-color 0.15s ease;
+}
+
+.botao-primario {
+    background: var(--bordo);
+    color: var(--branco);
+    width: 100%;
+    margin-top: 0.75rem;
+}
+
+.botao-primario:hover {
+    background: var(--bordo-escuro);
+}
+
+.botao-discreto {
+    background: transparent;
+    color: var(--creme);
+    border: 1px solid rgba(247, 241, 232, 0.5);
+    padding: 0.4rem 1rem;
+}
+
+.botao-discreto:hover {
+    background: rgba(247, 241, 232, 0.12);
+}
+
+/* ---------- Telas de acesso (login / cadastro) ---------- */
+
+.acesso {
+    min-height: 100vh;
+    display: grid;
+    grid-template-columns: minmax(0, 5fr) minmax(0, 6fr);
+}
+
+.acesso-marca {
+    background: var(--bordo);
+    color: var(--creme);
+    padding: 4rem 3.5rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    border-right: 6px solid var(--dourado);
+}
+
+.marca-nome {
+    font-family: var(--fonte-titulo);
+    font-size: clamp(3rem, 6vw, 5.5rem);
+    font-weight: 700;
+    line-height: 0.95;
+    margin: 0 0 1.5rem;
+}
+
+.marca-texto {
+    max-width: 32ch;
+    font-size: 1.1rem;
+    margin: 0;
+    color: rgba(247, 241, 232, 0.85);
+}
+
+.acesso-formulario {
+    padding: 4rem 3rem;
+    width: 100%;
+    max-width: 30rem;
+    margin: auto;
+}
+
+.acesso-formulario h1 {
+    font-size: 2.25rem;
+    margin-bottom: 1.5rem;
+}
+
+.formulario {
+    display: flex;
+    flex-direction: column;
+}
+
+.formulario label {
+    font-weight: 500;
+    font-size: 0.95rem;
+    margin: 1rem 0 0.35rem;
+}
+
+.formulario input {
+    font: inherit;
+    padding: 0.7rem 0.85rem;
+    border: 1px solid var(--borda);
+    border-radius: var(--raio);
+    background: var(--branco);
+    color: var(--texto);
+}
+
+.formulario input:focus {
+    border-color: var(--bordo);
+}
+
+.dica {
+    font-size: 0.85rem;
+    color: var(--texto-secundario);
+    margin: 0.35rem 0 0;
+}
+
+.troca-acesso {
+    margin-top: 1.5rem;
+    color: var(--texto-secundario);
+}
+
+.aviso {
+    padding: 0.75rem 1rem;
+    border-radius: var(--raio);
+    border-left: 4px solid;
+    margin: 0 0 1rem;
+    font-size: 0.95rem;
+}
+
+.aviso-erro {
+    border-color: var(--erro);
+    background: #F9E3E1;
+    color: var(--erro);
+}
+
+.aviso-sucesso {
+    border-color: var(--sucesso);
+    background: #E3F0E5;
+    color: var(--sucesso);
+}
+
+/* ---------- Topo ---------- */
+
+.topo {
+    background: var(--bordo-escuro);
+    color: var(--creme);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    padding: 1rem 2rem;
+    border-bottom: 3px solid var(--dourado);
+}
+
+.topo-marca {
+    font-family: var(--fonte-titulo);
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--creme);
+    text-decoration: none;
+}
+
+.topo-marca:hover {
+    color: var(--creme);
+}
+
+.topo-usuario {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.topo-usuario form {
+    margin: 0;
+}
+
+/* ---------- Catalogo ---------- */
+
+.catalogo {
+    max-width: 72rem;
+    margin: 0 auto;
+    padding: 3rem 2rem 4rem;
+}
+
+.catalogo-cabecalho {
+    margin-bottom: 1rem;
+}
+
+.catalogo-cabecalho h1 {
+    font-size: clamp(2.25rem, 4vw, 3rem);
+    color: var(--bordo);
+}
+
+.catalogo-cabecalho p {
+    color: var(--texto-secundario);
+    margin: 0.5rem 0 0;
+}
+
+.catalogo-vazio {
+    padding: 3rem 0;
+    color: var(--texto-secundario);
+}
+
+.grade {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(15rem, 1fr));
+    gap: 1.5rem;
+}
+
+.grade-titulo {
+    grid-column: 1 / -1;
+    font-size: 1.6rem;
+    color: var(--bordo-escuro);
+    margin-top: 2rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid var(--borda);
+}
+
+/* ---------- Card do vinho ---------- */
+
+.vinho {
+    background: var(--branco);
+    border: 1px solid var(--borda);
+    border-radius: var(--raio);
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+.vinho-imagem {
+    position: relative;
+    aspect-ratio: 3 / 4;
+    background: var(--creme-escuro);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.vinho-imagem img {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+    padding: 1rem;
+}
+
+.selo-esgotado {
+    position: absolute;
+    top: 0.75rem;
+    left: 0.75rem;
+    background: var(--texto);
+    color: var(--branco);
+    font-size: 0.8rem;
+    font-weight: 600;
+    padding: 0.25rem 0.6rem;
+    border-radius: var(--raio);
+}
+
+.vinho-corpo {
+    padding: 1rem 1.1rem 1.25rem;
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+}
+
+.vinho-nome {
+    font-size: 1.2rem;
+}
+
+.vinho-origem {
+    margin: 0.25rem 0 0;
+    font-size: 0.9rem;
+    color: var(--texto-secundario);
+}
+
+.vinho-uva {
+    margin: 0.5rem 0 0;
+    font-size: 0.9rem;
+    font-weight: 500;
+}
+
+.vinho-caracteristicas {
+    margin: 0.5rem 0 0;
+    font-size: 0.9rem;
+    font-style: italic;
+    color: var(--texto-secundario);
+}
+
+.vinho-ficha {
+    display: flex;
+    gap: 1.25rem;
+    margin: 0.9rem 0 0;
+    padding-top: 0.75rem;
+    border-top: 1px solid var(--creme-escuro);
+    font-size: 0.85rem;
+}
+
+.vinho-ficha dt {
+    color: var(--texto-secundario);
+}
+
+.vinho-ficha dd {
+    margin: 0;
+    font-weight: 500;
+}
+
+.vinho-preco {
+    margin: auto 0 0;
+    padding-top: 1rem;
+    font-family: var(--fonte-titulo);
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--bordo);
+}
+
+.vinho-esgotado .vinho-imagem img {
+    filter: grayscale(1);
+    opacity: 0.6;
+}
+
+.vinho-esgotado .vinho-preco {
+    color: var(--esgotado);
+}
+
+/* ---------- Responsivo ---------- */
+
+@media (max-width: 52rem) {
+    .acesso {
+        grid-template-columns: 1fr;
+    }
+
+    .acesso-marca {
+        padding: 2.5rem 1.5rem;
+        border-right: none;
+        border-bottom: 6px solid var(--dourado);
+    }
+
+    .marca-nome {
+        font-size: 2.75rem;
+        margin-bottom: 0.75rem;
+    }
+
+    .acesso-formulario {
+        padding: 2rem 1.5rem 3rem;
+    }
+
+    .topo {
+        padding: 0.85rem 1.25rem;
+    }
+
+    .topo-usuario span {
+        display: none;
+    }
+
+    .catalogo {
+        padding: 2rem 1.25rem 3rem;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    * {
+        transition: none !important;
+    }
+}
