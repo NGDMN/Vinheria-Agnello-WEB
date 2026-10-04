@@ -2,6 +2,8 @@
 .env
 .env.*
 !.env.example
+setenv.bat
+setenv.sh
 
 # Maven
 target/
