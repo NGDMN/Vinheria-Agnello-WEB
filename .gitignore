@@ -4,6 +4,7 @@
 !.env.example
 setenv.bat
 setenv.sh
+ciencia-dados/.venv/
 
 # Maven
 target/
@@ -22,3 +23,4 @@ Thumbs.db
 
 # Logs
 *.log
+
