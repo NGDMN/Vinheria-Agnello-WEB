@@ -1,0 +1,18 @@
+Regras da árvore de decisão (weights = [peso Não pago, peso Pago], com class_weight='balanced')
+
+|--- variacao_pedido_anterior_pct <= 50.12
+|   |--- forma_pagamento_Boleto <= 0.50
+|   |   |--- pedidos_anteriores <= 0.50
+|   |   |   |--- weights: [59.01, 73.24] class: Pago
+|   |   |--- pedidos_anteriores >  0.50
+|   |   |   |--- weights: [45.69, 130.88] class: Pago
+|   |--- forma_pagamento_Boleto >  0.50
+|   |   |--- pct_desconto <= 2.50
+|   |   |   |--- weights: [47.59, 18.99] class: Não pago
+|   |   |--- pct_desconto >  2.50
+|   |   |   |--- weights: [15.23, 16.95] class: Pago
+|--- variacao_pedido_anterior_pct >  50.12
+|   |--- tipo_cliente_PF <= 0.50
+|   |   |--- weights: [68.53, 11.53] class: Não pago
+|   |--- tipo_cliente_PF >  0.50
+|   |   |--- weights: [30.46, 14.92] class: Não pago
