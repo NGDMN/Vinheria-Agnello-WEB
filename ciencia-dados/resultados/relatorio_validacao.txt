@@ -1,0 +1,430 @@
+RELATÓRIO DE VALIDAÇÃO — Vinheria Agnello (PBL Fase 3)
+========================================================================
+Gerado em: 02/11/2026 18:20:27
+Versão do pipeline: 1.0.0
+Semente aleatória: 42
+Período da base: 01/10/2024 a 19/10/2026
+Catálogo de origem: tb_vinho.csv (export da TB_Vinho)
+Data da geração: 02/11/2026 18:20:25
+Linhas em clientes: 250
+Linhas em produtos: 8
+Linhas em rupturas_estoque: 13
+Linhas em pedidos: 672
+Linhas em produtos_pedidos: 1894
+Linhas em base_ml: 672
+Validação: Catálogo (produtos): 10 regras | 10 OK | 0 falha(s) crítica(s) | 0 alerta(s) | Base bruta (antes do tratamento): 113 regras | 113 OK | 0 falha(s) crítica(s) | 0 alerta(s) | Base tratada (antes de gravar): 183 regras | 183 OK | 0 falha(s) crítica(s) | 0 alerta(s)
+RESULTADO FINAL: APROVADO — base gravada
+
+Legenda: [OK] regra atendida | [FALHA] regra crítica violada (interrompe) | [ALERTA] fora do esperado (não interrompe)
+Grupos: E Esquema | N Nulos | U Unicidade | D Domínio | F Faixa | R Referencial | B Negócio | K Cálculo | V Vazamento | A Calibração
+
+== Tratamento aplicado
+   produtos          | Espaços extras removidos e textos vazios convertidos em nulo   | 0 linha(s)
+   produtos          | Vinhos inativos (ativo = falso) removidos                      | 0 linha(s)
+   produtos          | id_tipo sem correspondência em TIPOS_VINHO                     | 0 linha(s)
+   produtos          | id_produto: valores não numéricos convertidos em nulo          | 0 linha(s)
+   produtos          | preco_unitario: valores não numéricos convertidos em nulo      | 0 linha(s)
+   produtos          | preco_unitario: arredondado para 2 casas                       | 0 linha(s)
+   produtos          | Linhas idênticas duplicadas removidas                          | 0 linha(s)
+   produtos          | Chave (id_produto) repetida: mantida a 1ª ocorrência           | 0 linha(s)
+   produtos          | Linhas com campo obrigatório vazio removidas                   | 0 linha(s)
+   produtos          | Preço menor ou igual a zero, linha removida                    | 0 linha(s)
+   clientes          | Espaços extras removidos e textos vazios convertidos em nulo   | 0 linha(s)
+   clientes          | tipo_cliente: escrita padronizada para o valor canônico        | 0 linha(s)
+   clientes          | uf: escrita padronizada para o valor canônico                  | 0 linha(s)
+   clientes          | data_cadastro: datas inválidas convertidas em nulo             | 0 linha(s)
+   clientes          | id_cliente: valores não numéricos convertidos em nulo          | 0 linha(s)
+   clientes          | Linhas idênticas duplicadas removidas                          | 0 linha(s)
+   clientes          | Chave (id_cliente) repetida: mantida a 1ª ocorrência           | 0 linha(s)
+   clientes          | Linhas com campo obrigatório vazio removidas                   | 0 linha(s)
+   clientes          | tipo_cliente: valor fora do domínio, linha removida            | 0 linha(s)
+   clientes          | uf: valor fora do domínio, linha removida                      | 0 linha(s)
+   produtos          | Espaços extras removidos e textos vazios convertidos em nulo   | 0 linha(s)
+   produtos          | tipo_vinho: escrita padronizada para o valor canônico          | 0 linha(s)
+   produtos          | id_produto: valores não numéricos convertidos em nulo          | 0 linha(s)
+   produtos          | preco_unitario: valores não numéricos convertidos em nulo      | 0 linha(s)
+   produtos          | preco_unitario: arredondado para 2 casas                       | 0 linha(s)
+   produtos          | Linhas idênticas duplicadas removidas                          | 0 linha(s)
+   produtos          | Chave (id_produto) repetida: mantida a 1ª ocorrência           | 0 linha(s)
+   produtos          | Linhas com campo obrigatório vazio removidas                   | 0 linha(s)
+   produtos          | tipo_vinho: valor fora do domínio, linha removida              | 0 linha(s)
+   rupturas_estoque  | Espaços extras removidos e textos vazios convertidos em nulo   | 0 linha(s)
+   rupturas_estoque  | tipo_ruptura: escrita padronizada para o valor canônico        | 0 linha(s)
+   rupturas_estoque  | data_inicio: datas inválidas convertidas em nulo               | 0 linha(s)
+   rupturas_estoque  | data_fim: datas inválidas convertidas em nulo                  | 0 linha(s)
+   rupturas_estoque  | id_produto: valores não numéricos convertidos em nulo          | 0 linha(s)
+   rupturas_estoque  | Linhas idênticas duplicadas removidas                          | 0 linha(s)
+   rupturas_estoque  | Linhas com campo obrigatório vazio removidas                   | 0 linha(s)
+   rupturas_estoque  | tipo_ruptura: valor fora do domínio, linha removida            | 0 linha(s)
+   pedidos           | Espaços extras removidos e textos vazios convertidos em nulo   | 0 linha(s)
+   pedidos           | canal: escrita padronizada para o valor canônico               | 0 linha(s)
+   pedidos           | uf_destino: escrita padronizada para o valor canônico          | 0 linha(s)
+   pedidos           | tipo_frete: escrita padronizada para o valor canônico          | 0 linha(s)
+   pedidos           | forma_pagamento: escrita padronizada para o valor canônico     | 0 linha(s)
+   pedidos           | status_pedido: escrita padronizada para o valor canônico       | 0 linha(s)
+   pedidos           | status_entrega: escrita padronizada para o valor canônico      | 0 linha(s)
+   pedidos           | motivo_insucesso: escrita padronizada para o valor canônico    | 0 linha(s)
+   pedidos           | data_pedido: datas inválidas convertidas em nulo               | 0 linha(s)
+   pedidos           | id_pedido: valores não numéricos convertidos em nulo           | 0 linha(s)
+   pedidos           | id_cliente: valores não numéricos convertidos em nulo          | 0 linha(s)
+   pedidos           | prazo_entrega_dias: valores não numéricos convertidos em nulo  | 0 linha(s)
+   pedidos           | valor_frete: valores não numéricos convertidos em nulo         | 0 linha(s)
+   pedidos           | valor_total: valores não numéricos convertidos em nulo         | 0 linha(s)
+   pedidos           | pct_desconto: valores não numéricos convertidos em nulo        | 0 linha(s)
+   pedidos           | venda_sucesso: valores não numéricos convertidos em nulo       | 0 linha(s)
+   pedidos           | valor_frete: arredondado para 2 casas                          | 0 linha(s)
+   pedidos           | valor_total: arredondado para 2 casas                          | 0 linha(s)
+   pedidos           | Linhas idênticas duplicadas removidas                          | 0 linha(s)
+   pedidos           | Chave (id_pedido) repetida: mantida a 1ª ocorrência            | 0 linha(s)
+   pedidos           | Linhas com campo obrigatório vazio removidas                   | 0 linha(s)
+   pedidos           | canal: valor fora do domínio, linha removida                   | 0 linha(s)
+   pedidos           | uf_destino: valor fora do domínio, linha removida              | 0 linha(s)
+   pedidos           | tipo_frete: valor fora do domínio, linha removida              | 0 linha(s)
+   pedidos           | forma_pagamento: valor fora do domínio, linha removida         | 0 linha(s)
+   pedidos           | pct_desconto: valor fora do domínio, linha removida            | 0 linha(s)
+   pedidos           | status_pedido: valor fora do domínio, linha removida           | 0 linha(s)
+   pedidos           | status_entrega: valor fora do domínio, linha removida          | 0 linha(s)
+   pedidos           | motivo_insucesso: valor fora do domínio, linha removida        | 0 linha(s)
+   produtos_pedidos  | Espaços extras removidos e textos vazios convertidos em nulo   | 0 linha(s)
+   produtos_pedidos  | id_pedido: valores não numéricos convertidos em nulo           | 0 linha(s)
+   produtos_pedidos  | id_produto: valores não numéricos convertidos em nulo          | 0 linha(s)
+   produtos_pedidos  | quantidade: valores não numéricos convertidos em nulo          | 0 linha(s)
+   produtos_pedidos  | preco_unitario: valores não numéricos convertidos em nulo      | 0 linha(s)
+   produtos_pedidos  | preco_unitario: arredondado para 2 casas                       | 0 linha(s)
+   produtos_pedidos  | Linhas idênticas duplicadas removidas                          | 0 linha(s)
+   produtos_pedidos  | Chave (id_pedido, id_produto) repetida: mantida a 1ª ocorrência | 0 linha(s)
+   produtos_pedidos  | Linhas com campo obrigatório vazio removidas                   | 0 linha(s)
+   clientes          | data_cadastro fora do período aceito                           | 0 linha(s)
+   rupturas_estoque  | data_fim anterior a data_inicio                                | 0 linha(s)
+   pedidos           | data_pedido fora do período da base                            | 0 linha(s)
+   pedidos           | valor_total menor ou igual a zero                              | 0 linha(s)
+   pedidos           | valor_frete negativo                                           | 0 linha(s)
+   pedidos           | prazo_entrega_dias fora de 0 a 18                              | 0 linha(s)
+   pedidos           | venda_sucesso diferente de 0, 1 ou vazio                       | 0 linha(s)
+   produtos_pedidos  | quantidade menor que 1                                         | 0 linha(s)
+   produtos_pedidos  | preco_unitario menor ou igual a zero                           | 0 linha(s)
+   produtos          | preco_unitario menor ou igual a zero                           | 0 linha(s)
+   pedidos           | Cliente inexistente: pedido removido                           | 0 linha(s)
+   produtos_pedidos  | Produto inexistente: item removido                             | 0 linha(s)
+   produtos_pedidos  | Pedido inexistente ou removido: item removido                  | 0 linha(s)
+   pedidos           | Pedido sem itens válidos removido                              | 0 linha(s)
+   rupturas_estoque  | Produto inexistente: ruptura removida                          | 0 linha(s)
+   todas             | Textos iniciados por =, +, - ou @ protegidos contra fórmula    | 0 linha(s)
+
+== Validação: Catálogo (produtos) — APROVADA
+   10 regras | 10 OK | 0 falha(s) crítica(s) | 0 alerta(s)
+
+   [OK    ] E01 Esquema     | produtos: colunas obrigatórias presentes
+   [OK    ] E02 Esquema     | produtos: catálogo com pelo menos 1 vinho
+   [OK    ] N01 Nulos       | produtos.id_produto sem valores vazios
+   [OK    ] N02 Nulos       | produtos.nome_vinho sem valores vazios
+   [OK    ] N03 Nulos       | produtos.tipo_vinho sem valores vazios
+   [OK    ] N04 Nulos       | produtos.pais_origem sem valores vazios
+   [OK    ] N05 Nulos       | produtos.preco_unitario sem valores vazios
+   [OK    ] U01 Unicidade   | produtos: chave (id_produto) sem duplicidade
+   [OK    ] D01 Domínio     | produtos.tipo_vinho dentro dos valores aceitos
+   [OK    ] F01 Faixa       | produtos.preco_unitario > 0
+
+== Validação: Base bruta (antes do tratamento) — DIAGNÓSTICO (não interrompe)
+   113 regras | 113 OK | 0 falha(s) crítica(s) | 0 alerta(s)
+
+   [OK    ] E01 Esquema     | clientes: colunas obrigatórias presentes
+   [OK    ] E02 Esquema     | produtos: colunas obrigatórias presentes
+   [OK    ] E03 Esquema     | rupturas_estoque: colunas obrigatórias presentes
+   [OK    ] E04 Esquema     | pedidos: colunas obrigatórias presentes
+   [OK    ] E05 Esquema     | produtos_pedidos: colunas obrigatórias presentes
+   [OK    ] E06 Esquema     | clientes.data_cadastro é data válida
+   [OK    ] E07 Esquema     | clientes.id_cliente é numérico
+   [OK    ] E08 Esquema     | clientes.id_cliente é inteiro
+   [OK    ] E09 Esquema     | produtos.id_produto é numérico
+   [OK    ] E10 Esquema     | produtos.preco_unitario é numérico
+   [OK    ] E11 Esquema     | produtos.id_produto é inteiro
+   [OK    ] E12 Esquema     | rupturas_estoque.data_inicio é data válida
+   [OK    ] E13 Esquema     | rupturas_estoque.data_fim é data válida
+   [OK    ] E14 Esquema     | rupturas_estoque.id_produto é numérico
+   [OK    ] E15 Esquema     | rupturas_estoque.id_produto é inteiro
+   [OK    ] E16 Esquema     | pedidos.data_pedido é data válida
+   [OK    ] E17 Esquema     | pedidos.id_pedido é numérico
+   [OK    ] E18 Esquema     | pedidos.id_cliente é numérico
+   [OK    ] E19 Esquema     | pedidos.prazo_entrega_dias é numérico
+   [OK    ] E20 Esquema     | pedidos.valor_frete é numérico
+   [OK    ] E21 Esquema     | pedidos.valor_total é numérico
+   [OK    ] E22 Esquema     | pedidos.pct_desconto é numérico
+   [OK    ] E23 Esquema     | pedidos.venda_sucesso é numérico
+   [OK    ] E24 Esquema     | pedidos.id_pedido é inteiro
+   [OK    ] E25 Esquema     | pedidos.id_cliente é inteiro
+   [OK    ] E26 Esquema     | pedidos.prazo_entrega_dias é inteiro
+   [OK    ] E27 Esquema     | produtos_pedidos.id_pedido é numérico
+   [OK    ] E28 Esquema     | produtos_pedidos.id_produto é numérico
+   [OK    ] E29 Esquema     | produtos_pedidos.quantidade é numérico
+   [OK    ] E30 Esquema     | produtos_pedidos.preco_unitario é numérico
+   [OK    ] E31 Esquema     | produtos_pedidos.id_pedido é inteiro
+   [OK    ] E32 Esquema     | produtos_pedidos.id_produto é inteiro
+   [OK    ] E33 Esquema     | produtos_pedidos.quantidade é inteiro
+   [OK    ] N01 Nulos       | clientes.id_cliente sem valores vazios
+   [OK    ] N02 Nulos       | clientes.tipo_cliente sem valores vazios
+   [OK    ] N03 Nulos       | clientes.uf sem valores vazios
+   [OK    ] N04 Nulos       | clientes.data_cadastro sem valores vazios
+   [OK    ] N05 Nulos       | produtos.id_produto sem valores vazios
+   [OK    ] N06 Nulos       | produtos.nome_vinho sem valores vazios
+   [OK    ] N07 Nulos       | produtos.tipo_vinho sem valores vazios
+   [OK    ] N08 Nulos       | produtos.pais_origem sem valores vazios
+   [OK    ] N09 Nulos       | produtos.preco_unitario sem valores vazios
+   [OK    ] N10 Nulos       | pedidos.id_pedido sem valores vazios
+   [OK    ] N11 Nulos       | pedidos.id_cliente sem valores vazios
+   [OK    ] N12 Nulos       | pedidos.data_pedido sem valores vazios
+   [OK    ] N13 Nulos       | pedidos.canal sem valores vazios
+   [OK    ] N14 Nulos       | pedidos.uf_destino sem valores vazios
+   [OK    ] N15 Nulos       | pedidos.tipo_frete sem valores vazios
+   [OK    ] N16 Nulos       | pedidos.valor_frete sem valores vazios
+   [OK    ] N17 Nulos       | pedidos.prazo_entrega_dias sem valores vazios
+   [OK    ] N18 Nulos       | pedidos.forma_pagamento sem valores vazios
+   [OK    ] N19 Nulos       | pedidos.pct_desconto sem valores vazios
+   [OK    ] N20 Nulos       | pedidos.valor_total sem valores vazios
+   [OK    ] N21 Nulos       | pedidos.status_pedido sem valores vazios
+   [OK    ] N22 Nulos       | produtos_pedidos.id_pedido sem valores vazios
+   [OK    ] N23 Nulos       | produtos_pedidos.id_produto sem valores vazios
+   [OK    ] N24 Nulos       | produtos_pedidos.quantidade sem valores vazios
+   [OK    ] N25 Nulos       | produtos_pedidos.preco_unitario sem valores vazios
+   [OK    ] N26 Nulos       | rupturas_estoque sem valores vazios
+   [OK    ] U01 Unicidade   | clientes: chave (id_cliente) sem duplicidade
+   [OK    ] U02 Unicidade   | produtos: chave (id_produto) sem duplicidade
+   [OK    ] U03 Unicidade   | pedidos: chave (id_pedido) sem duplicidade
+   [OK    ] U04 Unicidade   | produtos_pedidos: chave (id_pedido, id_produto) sem duplicidade
+   [OK    ] D01 Domínio     | clientes.tipo_cliente dentro dos valores aceitos
+   [OK    ] D02 Domínio     | clientes.uf dentro dos valores aceitos
+   [OK    ] D03 Domínio     | produtos.tipo_vinho dentro dos valores aceitos
+   [OK    ] D04 Domínio     | rupturas_estoque.tipo_ruptura dentro dos valores aceitos
+   [OK    ] D05 Domínio     | pedidos.canal dentro dos valores aceitos
+   [OK    ] D06 Domínio     | pedidos.uf_destino dentro dos valores aceitos
+   [OK    ] D07 Domínio     | pedidos.tipo_frete dentro dos valores aceitos
+   [OK    ] D08 Domínio     | pedidos.forma_pagamento dentro dos valores aceitos
+   [OK    ] D09 Domínio     | pedidos.pct_desconto dentro dos valores aceitos
+   [OK    ] D10 Domínio     | pedidos.status_pedido dentro dos valores aceitos
+   [OK    ] D11 Domínio     | pedidos.status_entrega dentro dos valores aceitos
+   [OK    ] D12 Domínio     | pedidos.motivo_insucesso dentro dos valores aceitos
+   [OK    ] D13 Domínio     | pedidos.venda_sucesso dentro dos valores aceitos
+   [OK    ] F01 Faixa       | clientes.data_cadastro >= 2023-01-01 e <= 2026-10-19
+   [OK    ] F02 Faixa       | produtos.preco_unitario > 0
+   [OK    ] F03 Faixa       | rupturas_estoque.data_inicio >= 2024-10-01 e <= 2026-10-19
+   [OK    ] F04 Faixa       | rupturas_estoque.data_fim >= 2024-10-01 e <= 2026-10-19
+   [OK    ] F05 Faixa       | pedidos.data_pedido >= 2024-10-01 e <= 2026-10-19
+   [OK    ] F06 Faixa       | pedidos.valor_total > 0
+   [OK    ] F07 Faixa       | pedidos.valor_frete >= 0
+   [OK    ] F08 Faixa       | pedidos.prazo_entrega_dias >= 0 e <= 18
+   [OK    ] F09 Faixa       | produtos_pedidos.quantidade >= 1
+   [OK    ] F10 Faixa       | produtos_pedidos.preco_unitario > 0
+   [OK    ] R01 Referencial | pedidos.id_cliente existe em clientes.id_cliente
+   [OK    ] R02 Referencial | produtos_pedidos.id_pedido existe em pedidos.id_pedido
+   [OK    ] R03 Referencial | produtos_pedidos.id_produto existe em produtos.id_produto
+   [OK    ] R04 Referencial | rupturas_estoque.id_produto existe em produtos.id_produto
+   [OK    ] R05 Referencial | pedidos: todo pedido tem pelo menos 1 item
+   [OK    ] B01 Negócio     | Pedido feito após o cadastro do cliente
+   [OK    ] B02 Negócio     | UF de destino igual à UF do cliente
+   [OK    ] B03 Negócio     | Same-Day apenas em Sul/Sudeste
+   [OK    ] B04 Negócio     | Retirada apenas para clientes de SP (UF da loja)
+   [OK    ] B05 Negócio     | Retirada sem custo de frete
+   [OK    ] B06 Negócio     | Expresso e Same-Day sempre com frete cobrado
+   [OK    ] B07 Negócio     | Frete grátis só no Econômico em Sul/Sudeste a partir de R$ 250.00, e sempre que elegível
+   [OK    ] B08 Negócio     | Prazo dentro da faixa do modal, da região e da época
+   [OK    ] B09 Negócio     | status_pedido coerente com venda_sucesso
+   [OK    ] B10 Negócio     | Motivo de insucesso preenchido se, e somente se, a venda não foi paga
+   [OK    ] B11 Negócio     | Motivo de insucesso coerente com a forma de pagamento
+   [OK    ] B12 Negócio     | Aguardando pagamento apenas no mês em andamento
+   [OK    ] B13 Negócio     | Status de entrega preenchido se, e somente se, a venda foi paga
+   [OK    ] B14 Negócio     | Em trânsito apenas no mês em andamento
+   [OK    ] B15 Negócio     | Ruptura com data final igual ou posterior à inicial
+   [OK    ] B16 Negócio     | Janelas de ruptura sem sobreposição no mesmo produto
+   [OK    ] B17 Negócio     | Nenhuma venda de produto em período de ruptura
+   [OK    ] K01 Cálculo     | valor_total = soma dos itens x (1 - desconto)
+   [OK    ] A01 Calibração  | Conversão geral entre 65% e 85% (atual: 73.8%)
+   [OK    ] A02 Calibração  | Classe minoritária com pelo menos 15% (atual: 26.2%)
+   [OK    ] A03 Calibração  | Clientes PJ entre 20% e 40% (atual: 30.8%)
+   [OK    ] A04 Calibração  | Volume mensal entre 15 e 50 pedidos (meses completos)
+
+== Validação: Base tratada (antes de gravar) — APROVADA
+   183 regras | 183 OK | 0 falha(s) crítica(s) | 0 alerta(s)
+
+   [OK    ] E01 Esquema     | clientes: colunas obrigatórias presentes
+   [OK    ] E02 Esquema     | produtos: colunas obrigatórias presentes
+   [OK    ] E03 Esquema     | rupturas_estoque: colunas obrigatórias presentes
+   [OK    ] E04 Esquema     | pedidos: colunas obrigatórias presentes
+   [OK    ] E05 Esquema     | produtos_pedidos: colunas obrigatórias presentes
+   [OK    ] E06 Esquema     | base_ml: colunas obrigatórias presentes
+   [OK    ] E07 Esquema     | clientes.data_cadastro é data válida
+   [OK    ] E08 Esquema     | clientes.id_cliente é numérico
+   [OK    ] E09 Esquema     | clientes.id_cliente é inteiro
+   [OK    ] E10 Esquema     | produtos.id_produto é numérico
+   [OK    ] E11 Esquema     | produtos.preco_unitario é numérico
+   [OK    ] E12 Esquema     | produtos.id_produto é inteiro
+   [OK    ] E13 Esquema     | rupturas_estoque.data_inicio é data válida
+   [OK    ] E14 Esquema     | rupturas_estoque.data_fim é data válida
+   [OK    ] E15 Esquema     | rupturas_estoque.id_produto é numérico
+   [OK    ] E16 Esquema     | rupturas_estoque.id_produto é inteiro
+   [OK    ] E17 Esquema     | pedidos.data_pedido é data válida
+   [OK    ] E18 Esquema     | pedidos.id_pedido é numérico
+   [OK    ] E19 Esquema     | pedidos.id_cliente é numérico
+   [OK    ] E20 Esquema     | pedidos.prazo_entrega_dias é numérico
+   [OK    ] E21 Esquema     | pedidos.valor_frete é numérico
+   [OK    ] E22 Esquema     | pedidos.valor_total é numérico
+   [OK    ] E23 Esquema     | pedidos.pct_desconto é numérico
+   [OK    ] E24 Esquema     | pedidos.venda_sucesso é numérico
+   [OK    ] E25 Esquema     | pedidos.id_pedido é inteiro
+   [OK    ] E26 Esquema     | pedidos.id_cliente é inteiro
+   [OK    ] E27 Esquema     | pedidos.prazo_entrega_dias é inteiro
+   [OK    ] E28 Esquema     | produtos_pedidos.id_pedido é numérico
+   [OK    ] E29 Esquema     | produtos_pedidos.id_produto é numérico
+   [OK    ] E30 Esquema     | produtos_pedidos.quantidade é numérico
+   [OK    ] E31 Esquema     | produtos_pedidos.preco_unitario é numérico
+   [OK    ] E32 Esquema     | produtos_pedidos.id_pedido é inteiro
+   [OK    ] E33 Esquema     | produtos_pedidos.id_produto é inteiro
+   [OK    ] E34 Esquema     | produtos_pedidos.quantidade é inteiro
+   [OK    ] E35 Esquema     | base_ml.data_pedido é data válida
+   [OK    ] E36 Esquema     | base_ml.id_pedido é numérico
+   [OK    ] E37 Esquema     | base_ml.mes é numérico
+   [OK    ] E38 Esquema     | base_ml.quinzena é numérico
+   [OK    ] E39 Esquema     | base_ml.pedidos_anteriores é numérico
+   [OK    ] E40 Esquema     | base_ml.qtd_itens é numérico
+   [OK    ] E41 Esquema     | base_ml.prazo_entrega_dias é numérico
+   [OK    ] E42 Esquema     | base_ml.valor_total é numérico
+   [OK    ] E43 Esquema     | base_ml.valor_frete é numérico
+   [OK    ] E44 Esquema     | base_ml.pct_desconto é numérico
+   [OK    ] E45 Esquema     | base_ml.variacao_pedido_anterior_pct é numérico
+   [OK    ] E46 Esquema     | base_ml.venda_sucesso é numérico
+   [OK    ] E47 Esquema     | base_ml.id_pedido é inteiro
+   [OK    ] E48 Esquema     | base_ml.mes é inteiro
+   [OK    ] E49 Esquema     | base_ml.quinzena é inteiro
+   [OK    ] E50 Esquema     | base_ml.pedidos_anteriores é inteiro
+   [OK    ] E51 Esquema     | base_ml.qtd_itens é inteiro
+   [OK    ] E52 Esquema     | base_ml.prazo_entrega_dias é inteiro
+   [OK    ] N01 Nulos       | clientes.id_cliente sem valores vazios
+   [OK    ] N02 Nulos       | clientes.tipo_cliente sem valores vazios
+   [OK    ] N03 Nulos       | clientes.uf sem valores vazios
+   [OK    ] N04 Nulos       | clientes.data_cadastro sem valores vazios
+   [OK    ] N05 Nulos       | produtos.id_produto sem valores vazios
+   [OK    ] N06 Nulos       | produtos.nome_vinho sem valores vazios
+   [OK    ] N07 Nulos       | produtos.tipo_vinho sem valores vazios
+   [OK    ] N08 Nulos       | produtos.pais_origem sem valores vazios
+   [OK    ] N09 Nulos       | produtos.preco_unitario sem valores vazios
+   [OK    ] N10 Nulos       | pedidos.id_pedido sem valores vazios
+   [OK    ] N11 Nulos       | pedidos.id_cliente sem valores vazios
+   [OK    ] N12 Nulos       | pedidos.data_pedido sem valores vazios
+   [OK    ] N13 Nulos       | pedidos.canal sem valores vazios
+   [OK    ] N14 Nulos       | pedidos.uf_destino sem valores vazios
+   [OK    ] N15 Nulos       | pedidos.tipo_frete sem valores vazios
+   [OK    ] N16 Nulos       | pedidos.valor_frete sem valores vazios
+   [OK    ] N17 Nulos       | pedidos.prazo_entrega_dias sem valores vazios
+   [OK    ] N18 Nulos       | pedidos.forma_pagamento sem valores vazios
+   [OK    ] N19 Nulos       | pedidos.pct_desconto sem valores vazios
+   [OK    ] N20 Nulos       | pedidos.valor_total sem valores vazios
+   [OK    ] N21 Nulos       | pedidos.status_pedido sem valores vazios
+   [OK    ] N22 Nulos       | produtos_pedidos.id_pedido sem valores vazios
+   [OK    ] N23 Nulos       | produtos_pedidos.id_produto sem valores vazios
+   [OK    ] N24 Nulos       | produtos_pedidos.quantidade sem valores vazios
+   [OK    ] N25 Nulos       | produtos_pedidos.preco_unitario sem valores vazios
+   [OK    ] N26 Nulos       | rupturas_estoque sem valores vazios
+   [OK    ] U01 Unicidade   | clientes: chave (id_cliente) sem duplicidade
+   [OK    ] U02 Unicidade   | produtos: chave (id_produto) sem duplicidade
+   [OK    ] U03 Unicidade   | pedidos: chave (id_pedido) sem duplicidade
+   [OK    ] U04 Unicidade   | produtos_pedidos: chave (id_pedido, id_produto) sem duplicidade
+   [OK    ] D01 Domínio     | clientes.tipo_cliente dentro dos valores aceitos
+   [OK    ] D02 Domínio     | clientes.uf dentro dos valores aceitos
+   [OK    ] D03 Domínio     | produtos.tipo_vinho dentro dos valores aceitos
+   [OK    ] D04 Domínio     | rupturas_estoque.tipo_ruptura dentro dos valores aceitos
+   [OK    ] D05 Domínio     | pedidos.canal dentro dos valores aceitos
+   [OK    ] D06 Domínio     | pedidos.uf_destino dentro dos valores aceitos
+   [OK    ] D07 Domínio     | pedidos.tipo_frete dentro dos valores aceitos
+   [OK    ] D08 Domínio     | pedidos.forma_pagamento dentro dos valores aceitos
+   [OK    ] D09 Domínio     | pedidos.pct_desconto dentro dos valores aceitos
+   [OK    ] D10 Domínio     | pedidos.status_pedido dentro dos valores aceitos
+   [OK    ] D11 Domínio     | pedidos.status_entrega dentro dos valores aceitos
+   [OK    ] D12 Domínio     | pedidos.motivo_insucesso dentro dos valores aceitos
+   [OK    ] D13 Domínio     | pedidos.venda_sucesso dentro dos valores aceitos
+   [OK    ] F01 Faixa       | clientes.data_cadastro >= 2023-01-01 e <= 2026-10-19
+   [OK    ] F02 Faixa       | produtos.preco_unitario > 0
+   [OK    ] F03 Faixa       | rupturas_estoque.data_inicio >= 2024-10-01 e <= 2026-10-19
+   [OK    ] F04 Faixa       | rupturas_estoque.data_fim >= 2024-10-01 e <= 2026-10-19
+   [OK    ] F05 Faixa       | pedidos.data_pedido >= 2024-10-01 e <= 2026-10-19
+   [OK    ] F06 Faixa       | pedidos.valor_total > 0
+   [OK    ] F07 Faixa       | pedidos.valor_frete >= 0
+   [OK    ] F08 Faixa       | pedidos.prazo_entrega_dias >= 0 e <= 18
+   [OK    ] F09 Faixa       | produtos_pedidos.quantidade >= 1
+   [OK    ] F10 Faixa       | produtos_pedidos.preco_unitario > 0
+   [OK    ] R01 Referencial | pedidos.id_cliente existe em clientes.id_cliente
+   [OK    ] R02 Referencial | produtos_pedidos.id_pedido existe em pedidos.id_pedido
+   [OK    ] R03 Referencial | produtos_pedidos.id_produto existe em produtos.id_produto
+   [OK    ] R04 Referencial | rupturas_estoque.id_produto existe em produtos.id_produto
+   [OK    ] R05 Referencial | pedidos: todo pedido tem pelo menos 1 item
+   [OK    ] B01 Negócio     | Pedido feito após o cadastro do cliente
+   [OK    ] B02 Negócio     | UF de destino igual à UF do cliente
+   [OK    ] B03 Negócio     | Same-Day apenas em Sul/Sudeste
+   [OK    ] B04 Negócio     | Retirada apenas para clientes de SP (UF da loja)
+   [OK    ] B05 Negócio     | Retirada sem custo de frete
+   [OK    ] B06 Negócio     | Expresso e Same-Day sempre com frete cobrado
+   [OK    ] B07 Negócio     | Frete grátis só no Econômico em Sul/Sudeste a partir de R$ 250.00, e sempre que elegível
+   [OK    ] B08 Negócio     | Prazo dentro da faixa do modal, da região e da época
+   [OK    ] B09 Negócio     | status_pedido coerente com venda_sucesso
+   [OK    ] B10 Negócio     | Motivo de insucesso preenchido se, e somente se, a venda não foi paga
+   [OK    ] B11 Negócio     | Motivo de insucesso coerente com a forma de pagamento
+   [OK    ] B12 Negócio     | Aguardando pagamento apenas no mês em andamento
+   [OK    ] B13 Negócio     | Status de entrega preenchido se, e somente se, a venda foi paga
+   [OK    ] B14 Negócio     | Em trânsito apenas no mês em andamento
+   [OK    ] B15 Negócio     | Ruptura com data final igual ou posterior à inicial
+   [OK    ] B16 Negócio     | Janelas de ruptura sem sobreposição no mesmo produto
+   [OK    ] B17 Negócio     | Nenhuma venda de produto em período de ruptura
+   [OK    ] K01 Cálculo     | valor_total = soma dos itens x (1 - desconto)
+   [OK    ] N27 Nulos       | base_ml.id_pedido sem valores vazios
+   [OK    ] N28 Nulos       | base_ml.data_pedido sem valores vazios
+   [OK    ] N29 Nulos       | base_ml.mes sem valores vazios
+   [OK    ] N30 Nulos       | base_ml.quinzena sem valores vazios
+   [OK    ] N31 Nulos       | base_ml.canal sem valores vazios
+   [OK    ] N32 Nulos       | base_ml.tipo_cliente sem valores vazios
+   [OK    ] N33 Nulos       | base_ml.pedidos_anteriores sem valores vazios
+   [OK    ] N34 Nulos       | base_ml.qtd_itens sem valores vazios
+   [OK    ] N35 Nulos       | base_ml.valor_total sem valores vazios
+   [OK    ] N36 Nulos       | base_ml.pct_desconto sem valores vazios
+   [OK    ] N37 Nulos       | base_ml.uf_destino sem valores vazios
+   [OK    ] N38 Nulos       | base_ml.regiao sem valores vazios
+   [OK    ] N39 Nulos       | base_ml.tipo_frete sem valores vazios
+   [OK    ] N40 Nulos       | base_ml.valor_frete sem valores vazios
+   [OK    ] N41 Nulos       | base_ml.prazo_entrega_dias sem valores vazios
+   [OK    ] N42 Nulos       | base_ml.forma_pagamento sem valores vazios
+   [OK    ] U05 Unicidade   | base_ml: chave (id_pedido) sem duplicidade
+   [OK    ] D14 Domínio     | base_ml.canal dentro dos valores aceitos
+   [OK    ] D15 Domínio     | base_ml.tipo_cliente dentro dos valores aceitos
+   [OK    ] D16 Domínio     | base_ml.uf_destino dentro dos valores aceitos
+   [OK    ] D17 Domínio     | base_ml.regiao dentro dos valores aceitos
+   [OK    ] D18 Domínio     | base_ml.tipo_frete dentro dos valores aceitos
+   [OK    ] D19 Domínio     | base_ml.forma_pagamento dentro dos valores aceitos
+   [OK    ] D20 Domínio     | base_ml.pct_desconto dentro dos valores aceitos
+   [OK    ] D21 Domínio     | base_ml.motivo_insucesso dentro dos valores aceitos
+   [OK    ] D22 Domínio     | base_ml.venda_sucesso dentro dos valores aceitos
+   [OK    ] D23 Domínio     | base_ml.quinzena dentro dos valores aceitos
+   [OK    ] F11 Faixa       | base_ml.mes >= 1 e <= 12
+   [OK    ] F12 Faixa       | base_ml.pedidos_anteriores >= 0
+   [OK    ] F13 Faixa       | base_ml.qtd_itens >= 1
+   [OK    ] F14 Faixa       | base_ml.variacao_pedido_anterior_pct > -100
+   [OK    ] V01 Vazamento   | Entradas do modelo sem colunas posteriores ao checkout ou identificadores
+   [OK    ] V02 Vazamento   | Todas as entradas do modelo existem na base_ml
+   [OK    ] R06 Referencial | base_ml contém exatamente os pedidos da tabela pedidos
+   [OK    ] K02 Cálculo     | base_ml.data_pedido igual a pedidos.data_pedido
+   [OK    ] K03 Cálculo     | base_ml.canal igual a pedidos.canal
+   [OK    ] K04 Cálculo     | base_ml.uf_destino igual a pedidos.uf_destino
+   [OK    ] K05 Cálculo     | base_ml.tipo_frete igual a pedidos.tipo_frete
+   [OK    ] K06 Cálculo     | base_ml.forma_pagamento igual a pedidos.forma_pagamento
+   [OK    ] K07 Cálculo     | base_ml.pct_desconto igual a pedidos.pct_desconto
+   [OK    ] K08 Cálculo     | base_ml.prazo_entrega_dias igual a pedidos.prazo_entrega_dias
+   [OK    ] K09 Cálculo     | base_ml.motivo_insucesso igual a pedidos.motivo_insucesso
+   [OK    ] K10 Cálculo     | base_ml.valor_total igual a pedidos.valor_total
+   [OK    ] K11 Cálculo     | base_ml.valor_frete igual a pedidos.valor_frete
+   [OK    ] K12 Cálculo     | base_ml.venda_sucesso igual a pedidos.venda_sucesso
+   [OK    ] K13 Cálculo     | base_ml.tipo_cliente igual ao cadastro do cliente
+   [OK    ] K14 Cálculo     | base_ml.regiao corresponde à UF de destino
+   [OK    ] K15 Cálculo     | base_ml.mes e quinzena derivados de data_pedido
+   [OK    ] K16 Cálculo     | base_ml.qtd_itens igual ao número de itens do pedido
+   [OK    ] K17 Cálculo     | pedidos_anteriores = pedidos pagos do cliente antes deste
+   [OK    ] K18 Cálculo     | variacao_pedido_anterior_pct = variação sobre o último pedido pago
+   [OK    ] A01 Calibração  | Conversão geral entre 65% e 85% (atual: 73.8%)
+   [OK    ] A02 Calibração  | Classe minoritária com pelo menos 15% (atual: 26.2%)
+   [OK    ] A03 Calibração  | Clientes PJ entre 20% e 40% (atual: 30.8%)
+   [OK    ] A04 Calibração  | Volume mensal entre 15 e 50 pedidos (meses completos)
