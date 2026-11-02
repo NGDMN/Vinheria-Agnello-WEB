@@ -4,7 +4,10 @@
 !.env.example
 setenv.bat
 setenv.sh
+
+# Python
 ciencia-dados/.venv/
+__pycache__/
 
 # Maven
 target/
