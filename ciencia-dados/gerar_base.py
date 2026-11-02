@@ -4,7 +4,7 @@ Geração da base de vendas simulada.
 
 Entrada : data/tb_vinho.csv  (export da TB_Vinho: id_vinho, nome, id_tipo, pais, preco)
 Saída   : data/vinheria_fase3.xlsx
-          abas: clientes, produtos, pedidos, produtos_pedidos, base_ml
+          abas: clientes, produtos, rupturas_estoque, pedidos, produtos_pedidos, base_ml
 
 Rótulo (venda_sucesso): 1 = pedido pago | 0 = não pago | vazio = aguardando pagamento
 """
@@ -25,8 +25,9 @@ SEMENTE = 42
 DATA_INICIO = date(2024, 10, 1)
 DATA_FIM = date(2026, 10, 19)
 
-CAMINHO_CATALOGO = Path("data/tb_vinho.csv")
-CAMINHO_SAIDA = Path("data/vinheria_fase3.xlsx")
+PASTA_DADOS = Path(__file__).resolve().parent / "data"
+CAMINHO_CATALOGO = PASTA_DADOS / "tb_vinho.csv"
+CAMINHO_SAIDA = PASTA_DADOS / "vinheria_fase3.xlsx"
 
 # Volume mensal: base sorteada x multiplicador sazonal, limitado ao intervalo
 PEDIDOS_MES_MIN, PEDIDOS_MES_MAX = 15, 50
@@ -58,6 +59,11 @@ GRUPO_LOGISTICO = {  # agrupamento usado em prazo e valor de frete
     "Centro-Oeste": "CONE", "Nordeste": "CONE",
     "Norte": "N",
 }
+
+# Rupturas de estoque: produto fica no catálogo, mas não pode ser vendido no período
+RUPTURAS_POR_PRODUTO = (1, 2)            # quantidade de janelas aleatórias por produto
+DURACAO_RUPTURA_DIAS = (14, 42)          # 2 a 6 semanas
+RUPTURAS_ATUAIS = {4: date(2026, 8, 1)}  # Miolo Lote 43: esgotado de agosto/2026 até o fim da base
 
 TIPOS_VINHO = {1: "Tinto", 2: "Branco", 3: "Rosé", 4: "Espumante", 5: "Fortificado"}
 
@@ -156,6 +162,44 @@ def carregar_catalogo() -> pd.DataFrame:
         "pais_origem": df["pais"],
         "preco_unitario": df["preco"].round(2),
     }).reset_index(drop=True)
+
+
+# =============================================================================
+# RUPTURAS DE ESTOQUE
+# =============================================================================
+
+def gerar_rupturas(catalogo: pd.DataFrame) -> pd.DataFrame:
+    ids_catalogo = set(catalogo["id_produto"])
+    janelas = {id_produto: [] for id_produto in ids_catalogo}
+    registros = []
+
+    for id_produto, inicio in RUPTURAS_ATUAIS.items():
+        if id_produto in ids_catalogo:
+            janelas[id_produto].append((inicio, DATA_FIM))
+            registros.append({"id_produto": id_produto, "data_inicio": inicio,
+                              "data_fim": DATA_FIM, "tipo_ruptura": "Atual"})
+
+    for id_produto in ids_catalogo:
+        qtd = int(rng.integers(RUPTURAS_POR_PRODUTO[0], RUPTURAS_POR_PRODUTO[1] + 1))
+        for _ in range(qtd):
+            for _tentativa in range(20):   # evita janelas sobrepostas no mesmo produto
+                duracao = int(rng.integers(DURACAO_RUPTURA_DIAS[0], DURACAO_RUPTURA_DIAS[1] + 1))
+                inicio = data_aleatoria(DATA_INICIO, DATA_FIM - timedelta(days=duracao))
+                fim = inicio + timedelta(days=duracao - 1)
+                if all(fim < ini or inicio > f for ini, f in janelas[id_produto]):
+                    janelas[id_produto].append((inicio, fim))
+                    registros.append({"id_produto": int(id_produto), "data_inicio": inicio,
+                                      "data_fim": fim, "tipo_ruptura": "Temporária"})
+                    break
+
+    return (pd.DataFrame(registros)
+            .sort_values(["id_produto", "data_inicio"])
+            .reset_index(drop=True))
+
+
+def indices_disponiveis(d: date, catalogo: pd.DataFrame, rupturas: pd.DataFrame) -> np.ndarray:
+    em_ruptura = rupturas[(rupturas["data_inicio"] <= d) & (rupturas["data_fim"] >= d)]["id_produto"]
+    return np.flatnonzero(~catalogo["id_produto"].isin(em_ruptura).to_numpy())
 
 
 # =============================================================================
@@ -310,14 +354,17 @@ def sortear_motivo_insucesso(forma_pagamento: str) -> str:
     return motivo_pagamento if rng.random() < 0.60 else "Desistência"
 
 
-def sortear_itens(tipo_cliente: str, perfil_cliente: dict, catalogo: pd.DataFrame) -> list[tuple]:
+def sortear_itens(tipo_cliente: str, perfil_cliente: dict, catalogo: pd.DataFrame,
+                  disponiveis: np.ndarray) -> list[tuple]:
     if tipo_cliente == "PF":
         n_itens = int(rng.choice([1, 2, 3, 4], p=[0.50, 0.30, 0.15, 0.05]))
-        candidatos = np.arange(len(catalogo))
+        candidatos = disponiveis
     else:
         variacao_itens = int(rng.choice([-1, 0, 1], p=[0.2, 0.6, 0.2]))
         n_itens = max(1, perfil_cliente["itens_base_pj"] + variacao_itens)
-        candidatos = perfil_cliente["produtos_preferidos"]
+        candidatos = np.intersect1d(perfil_cliente["produtos_preferidos"], disponiveis)
+        if len(candidatos) == 0:   # todo o mix em ruptura: compra de outros rótulos
+            candidatos = disponiveis
     n_itens = min(n_itens, len(candidatos))
 
     indices = rng.choice(candidatos, size=n_itens, replace=False)
@@ -336,7 +383,8 @@ def sortear_itens(tipo_cliente: str, perfil_cliente: dict, catalogo: pd.DataFram
 # GERAÇÃO DOS PEDIDOS
 # =============================================================================
 
-def gerar_pedidos(clientes: pd.DataFrame, perfil: dict, catalogo: pd.DataFrame):
+def gerar_pedidos(clientes: pd.DataFrame, perfil: dict, catalogo: pd.DataFrame,
+                  rupturas: pd.DataFrame):
     datas = gerar_datas_pedidos()
 
     # Outubro/2026: os 40% mais recentes ficam aguardando pagamento
@@ -348,8 +396,12 @@ def gerar_pedidos(clientes: pd.DataFrame, perfil: dict, catalogo: pd.DataFrame):
     historico_pagos = {c: [] for c in clientes["id_cliente"]}   # valores dos pedidos pagos
 
     pedidos, itens_pedidos = [], []
+    id_pedido = 0
     for i, d in enumerate(datas):
-        id_pedido = i + 1
+        disponiveis = indices_disponiveis(d, catalogo, rupturas)
+        if len(disponiveis) == 0:   # catálogo inteiro em ruptura: não há venda possível
+            continue
+        id_pedido += 1
 
         elegiveis = clientes[clientes["data_cadastro"] <= d]["id_cliente"].to_numpy()
         pesos = np.array([perfil[c]["frequencia"] for c in elegiveis])
@@ -360,7 +412,7 @@ def gerar_pedidos(clientes: pd.DataFrame, perfil: dict, catalogo: pd.DataFrame):
         regiao = UFS[uf][0]
         grupo = GRUPO_LOGISTICO[regiao]
 
-        itens = sortear_itens(tipo_cliente, perfil[id_cliente], catalogo)
+        itens = sortear_itens(tipo_cliente, perfil[id_cliente], catalogo, disponiveis)
         subtotal = sum(q * preco for _, q, preco in itens)
         pct_desconto = sortear(PROB_DESCONTO)
         valor_total = round(subtotal * (1 - pct_desconto / 100), 2)
@@ -483,7 +535,8 @@ def main() -> None:
     catalogo = carregar_catalogo()
     clientes, perfil = gerar_clientes()
     definir_produtos_preferidos(perfil, clientes, catalogo)
-    pedidos, produtos_pedidos = gerar_pedidos(clientes, perfil, catalogo)
+    rupturas = gerar_rupturas(catalogo)
+    pedidos, produtos_pedidos = gerar_pedidos(clientes, perfil, catalogo, rupturas)
     base_ml = montar_base_ml(pedidos)
 
     colunas_pedidos = [
@@ -498,6 +551,7 @@ def main() -> None:
     with pd.ExcelWriter(CAMINHO_SAIDA, engine="openpyxl") as writer:
         clientes.to_excel(writer, sheet_name="clientes", index=False)
         catalogo.to_excel(writer, sheet_name="produtos", index=False)
+        rupturas.to_excel(writer, sheet_name="rupturas_estoque", index=False)
         pedidos_saida.to_excel(writer, sheet_name="pedidos", index=False)
         produtos_pedidos.to_excel(writer, sheet_name="produtos_pedidos", index=False)
         base_ml.to_excel(writer, sheet_name="base_ml", index=False)
