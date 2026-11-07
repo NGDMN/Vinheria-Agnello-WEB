@@ -66,8 +66,8 @@ DICIONARIO = [
     ("produtos_pedidos", "id_pedido", "Inteiro", "Pedido ao qual o item pertence", "", ""),
     ("produtos_pedidos", "id_produto", "Inteiro", "Vinho comprado", "", ""),
     ("produtos_pedidos", "quantidade", "Inteiro", "Garrafas do vinho no pedido", "", ">= 1"),
-    ("produtos_pedidos", "preco_unitario", "Decimal (R$)", "Preço no momento da venda (histórico, independe do "
-     "catálogo atual)", "", "> 0"),
+    ("produtos_pedidos", "preco_unitario", "Decimal (R$)", "Preço de catálogo, sem desconto (a simulação não "
+     "varia preço no período); receita do item = quantidade x preço x (1 - pct_desconto do pedido)", "", "> 0"),
 
     # ------------------------------------------------------------------ base_ml
     # ------------------------------------------------------------------ regioes
