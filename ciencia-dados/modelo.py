@@ -172,6 +172,62 @@ def importancias(pipeline: Pipeline) -> pd.Series:
 
 
 # =============================================================================
+# CALIBRAÇÃO POR FOLHA
+# =============================================================================
+# class_weight="balanced" infla a classe "Não pago" nas folhas, então o predict_proba
+# não reflete a taxa real. A probabilidade publicada é a taxa real de pagamento da
+# folha no treino. A ordem das folhas não muda, portanto o AUC é o mesmo.
+
+def folhas_de(pipeline: Pipeline, X: pd.DataFrame) -> np.ndarray:
+    return pipeline.named_steps["modelo"].apply(pipeline.named_steps["preparo"].transform(X))
+
+
+def descrever_condicao(nome: str, limite: float, menor_ou_igual: bool) -> str:
+    for coluna in COLUNAS_CATEGORICAS:
+        if nome.startswith(f"{coluna}_"):   # one-hot: <= 0.5 significa "não é a categoria"
+            return f"{coluna} {'≠' if menor_ou_igual else '='} {nome[len(coluna) + 1:]}"
+    return f"{nome} {'<=' if menor_ou_igual else '>'} {limite:.2f}"
+
+
+def caminhos_folhas(pipeline: Pipeline) -> dict[int, str]:
+    arvore = pipeline.named_steps["modelo"].tree_
+    nomes = pipeline.named_steps["preparo"].get_feature_names_out()
+    caminhos = {}
+
+    def percorrer(no: int, condicoes: list[str]) -> None:
+        if arvore.children_left[no] == -1:
+            caminhos[no] = " E ".join(condicoes)
+            return
+        nome, limite = nomes[arvore.feature[no]], arvore.threshold[no]
+        percorrer(arvore.children_left[no], condicoes + [descrever_condicao(nome, limite, True)])
+        percorrer(arvore.children_right[no], condicoes + [descrever_condicao(nome, limite, False)])
+
+    percorrer(0, [])
+    return caminhos
+
+
+def resumo_folhas(pipeline: Pipeline, X: pd.DataFrame, y: pd.Series) -> pd.DataFrame:
+    """Contagem real por folha no treino: base da probabilidade calibrada e das regras do PDF."""
+    dados = pd.DataFrame({"folha": folhas_de(pipeline, X), "pago": y.to_numpy()})
+    resumo = dados.groupby("folha")["pago"].agg(pedidos="size", pagos="sum")
+    resumo["nao_pagos"] = resumo["pedidos"] - resumo["pagos"]
+    resumo["taxa_pagamento"] = resumo["pagos"] / resumo["pedidos"]
+
+    modelo = pipeline.named_steps["modelo"]
+    caminhos = caminhos_folhas(pipeline)
+    resumo["classe_prevista"] = [NOMES_CLASSES[int(modelo.classes_[modelo.tree_.value[f][0].argmax()])]
+                                 for f in resumo.index]
+    resumo["regra"] = [caminhos[f] for f in resumo.index]
+    return resumo.reset_index()
+
+
+def texto_folhas(folhas: pd.DataFrame) -> str:
+    tabela = folhas.assign(taxa_pagamento=(folhas["taxa_pagamento"] * 100).round(1).astype(str) + "%")
+    return tabela[["regra", "pedidos", "pagos", "nao_pagos", "taxa_pagamento", "classe_prevista"]].to_string(
+        index=False)
+
+
+# =============================================================================
 # SAÍDAS
 # =============================================================================
 
@@ -221,13 +277,16 @@ def faixa_risco(prob_nao_pago: float) -> str:
     return "Baixo"
 
 
-def montar_previsoes(pipeline: Pipeline, teste: pd.DataFrame, aguardando: pd.DataFrame) -> pd.DataFrame:
+def montar_previsoes(pipeline: Pipeline, teste: pd.DataFrame, aguardando: pd.DataFrame,
+                     folhas: pd.DataFrame) -> pd.DataFrame:
+    taxa_por_folha = folhas.set_index("folha")["taxa_pagamento"]
     partes = []
     for conjunto, df in [("Teste", teste), ("Aguardando pagamento", aguardando)]:
         if df.empty:
             continue
-        prob_pago = pipeline.predict_proba(df[cfg.COLUNAS_ENTRADA_MODELO])[:, 1]
-        previsto = (prob_pago >= 0.5).astype(int)
+        X = df[cfg.COLUNAS_ENTRADA_MODELO]
+        previsto = pipeline.predict(X)   # limiar da árvore balanceada: o mesmo das métricas
+        prob_pago = pd.Series(folhas_de(pipeline, X)).map(taxa_por_folha).to_numpy()
         parte = pd.DataFrame({
             "id_pedido": df["id_pedido"].to_numpy(),
             "conjunto": conjunto,
@@ -294,12 +353,15 @@ def main() -> int:
         regras = export_text(arvore.named_steps["modelo"],
                              feature_names=list(arvore.named_steps["preparo"].get_feature_names_out()),
                              class_names=[NOMES_CLASSES[0], NOMES_CLASSES[1]], show_weights=True)
+        folhas = resumo_folhas(arvore, X_treino, y_treino)
         CAMINHO_REGRAS.write_text(
             "Regras da árvore de decisão (weights = [peso Não pago, peso Pago], com class_weight='balanced')\n\n"
-            + regras, encoding="utf-8")
+            + regras
+            + "\n\nFolhas com contagem real no treino (taxa_pagamento = probabilidade publicada em previsoes.csv)\n\n"
+            + texto_folhas(folhas) + "\n", encoding="utf-8")
 
         print("[6/6] Gerando previsões")
-        previsoes = montar_previsoes(arvore, teste, aguardando)
+        previsoes = montar_previsoes(arvore, teste, aguardando, folhas)
         previsoes.to_csv(CAMINHO_PREVISOES, sep=";", decimal=",", index=False, encoding="utf-8-sig")
 
         proporcao = rotulados[cfg.ROTULO].value_counts(normalize=True)
@@ -340,6 +402,8 @@ def main() -> int:
             "- A linha de base sempre prevê 'Pago'. Um modelo útil precisa superá-la em AUC, acurácia",
             "  balanceada e recall de 'Não pago'; acurácia simples sozinha engana com classes desbalanceadas.",
             "- class_weight='balanced' compensa o desbalanceamento e prioriza encontrar pedidos não pagos.",
+            "- Por isso o predict_proba superestima 'Não pago'. As probabilidades de previsoes.csv são a taxa",
+            "  real de pagamento da folha no treino (ver regras_arvore.txt); a ordem das folhas e o AUC não mudam.",
         ])
 
         print(f"\nModelo final: árvore de decisão ({formatar_parametros(busca_arvore.best_params_)})")
