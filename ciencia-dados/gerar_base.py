@@ -8,7 +8,7 @@ Pipeline ETL da base de vendas simulada.
     Load      : grava data/vinheria_fase3.xlsx e resultados/relatorio_validacao.txt
 
 Abas do .xlsx: dicionario, clientes, produtos, rupturas_estoque, pedidos,
-               produtos_pedidos, base_ml, metadados
+               produtos_pedidos, base_ml, regioes, metadados
 
 Rótulo (venda_sucesso): 1 = pedido pago | 0 = não pago | vazio = aguardando pagamento
 """
@@ -368,6 +368,12 @@ def simular(catalogo: pd.DataFrame) -> dict:
 # LOAD
 # =============================================================================
 
+def montar_regioes() -> pd.DataFrame:
+    """Dimensão UF -> região para o dashboard (fonte única: cfg.UFS)."""
+    return pd.DataFrame([(uf, regiao) for uf, (regiao, _peso) in cfg.UFS.items()],
+                        columns=cfg.COLUNAS["regioes"])
+
+
 CARACTERES_FORMULA = ("=", "+", "-", "@")
 
 
@@ -459,6 +465,7 @@ def main() -> int:
         print("[5/6] Tratando as tabelas e derivando a base_ml")
         tratadas = tratar_tabelas(brutas, log)
         tratadas["base_ml"] = derivar_base_ml(tratadas)
+        tratadas["regioes"] = montar_regioes()
         log.imprimir()
         validadores.append(validar_base(tratadas, "Base tratada (antes de gravar)"))
 

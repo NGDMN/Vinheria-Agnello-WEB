@@ -145,6 +145,7 @@ COLUNAS = {
         "valor_total", "status_pedido", "status_entrega", "venda_sucesso", "motivo_insucesso",
     ],
     "produtos_pedidos": ["id_pedido", "id_produto", "quantidade", "preco_unitario"],
+    "regioes": ["uf", "regiao"],
     "base_ml": [
         "id_pedido", "data_pedido", "mes", "quinzena", "canal", "tipo_cliente",
         "pedidos_anteriores", "qtd_itens", "valor_total", "pct_desconto",

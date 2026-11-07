@@ -70,6 +70,11 @@ DICIONARIO = [
      "catálogo atual)", "", "> 0"),
 
     # ------------------------------------------------------------------ base_ml
+    # ------------------------------------------------------------------ regioes
+    ("regioes", "uf", "Texto", "Sigla da UF: liga com pedidos.uf_destino no dashboard", "", "27 UFs"),
+    ("regioes", "regiao", "Texto", "Região geográfica da UF: filtro de região do dashboard", FILTRO,
+     _valores("regiao")),
+
     ("base_ml", "id_pedido", "Inteiro", "Liga a linha ao pedido", IDENTIFICADOR, ""),
     ("base_ml", "data_pedido", "Data", "Filtro de período no dashboard; origem de mes e quinzena", FILTRO, ""),
     ("base_ml", "mes", "Inteiro", "Mês do pedido: sazonalidade de datas festivas", ENTRADA, "1 a 12"),
