@@ -9,6 +9,10 @@ setenv.sh
 ciencia-dados/.venv/
 __pycache__/
 
+# Power BI (PBIP)
+**/.pbi/localSettings.json
+**/.pbi/cache.abf
+
 # Maven
 target/
 
