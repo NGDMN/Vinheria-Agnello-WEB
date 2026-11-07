@@ -1,6 +1,6 @@
 MÉTRICAS DO MODELO — Vinheria Agnello (PBL Fase 3)
 ========================================================================
-Gerado em: 02/11/2026 18:35:46 | Semente: 42
+Gerado em: 07/11/2026 14:09:49 | Semente: 42
 Pedidos com rótulo: 667 (Pago 73.8% | Não pago 26.2%) | Aguardando pagamento: 5
 Treino: 533 | Teste: 134 (divisão estratificada 80%/20%)
 Entradas (14): mes, quinzena, canal, tipo_cliente, pedidos_anteriores, qtd_itens, valor_total, pct_desconto, regiao, tipo_frete, valor_frete, prazo_entrega_dias, forma_pagamento, variacao_pedido_anterior_pct
@@ -75,3 +75,5 @@ Notas:
 - A linha de base sempre prevê 'Pago'. Um modelo útil precisa superá-la em AUC, acurácia
   balanceada e recall de 'Não pago'; acurácia simples sozinha engana com classes desbalanceadas.
 - class_weight='balanced' compensa o desbalanceamento e prioriza encontrar pedidos não pagos.
+- Por isso o predict_proba superestima 'Não pago'. As probabilidades de previsoes.csv são a taxa
+  real de pagamento da folha no treino (ver regras_arvore.txt); a ordem das folhas e o AUC não mudam.

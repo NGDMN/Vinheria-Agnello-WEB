@@ -1,140 +1,140 @@
 ﻿id_pedido;conjunto;real;previsto;prob_pagamento;prob_nao_pagamento;acerto;faixa_risco
-595;Teste;Pago;Pago;0,7412;0,2588;Sim;Baixo
-342;Teste;Pago;Não pago;0,3288;0,6712;Não;Alto
-415;Teste;Pago;Pago;0,5538;0,4462;Sim;Médio
-50;Teste;Pago;Pago;0,7412;0,2588;Sim;Baixo
-306;Teste;Pago;Pago;0,7412;0,2588;Sim;Baixo
-146;Teste;Pago;Pago;0,7412;0,2588;Sim;Baixo
-419;Teste;Não pago;Pago;0,7412;0,2588;Não;Baixo
-265;Teste;Não pago;Pago;0,5538;0,4462;Não;Médio
-220;Teste;Pago;Não pago;0,2852;0,7148;Não;Alto
-435;Teste;Pago;Pago;0,7412;0,2588;Sim;Baixo
-109;Teste;Não pago;Não pago;0,2852;0,7148;Sim;Alto
-63;Teste;Pago;Pago;0,5538;0,4462;Sim;Médio
-172;Teste;Pago;Pago;0,7412;0,2588;Sim;Baixo
-316;Teste;Não pago;Pago;0,7412;0,2588;Não;Baixo
-480;Teste;Pago;Não pago;0,3288;0,6712;Não;Alto
-619;Teste;Pago;Pago;0,5268;0,4732;Sim;Médio
-368;Teste;Não pago;Pago;0,7412;0,2588;Não;Baixo
-258;Teste;Não pago;Não pago;0,2852;0,7148;Sim;Alto
-514;Teste;Não pago;Não pago;0,3288;0,6712;Sim;Alto
-255;Teste;Pago;Pago;0,7412;0,2588;Sim;Baixo
-570;Teste;Não pago;Não pago;0,3288;0,6712;Sim;Alto
-469;Teste;Pago;Pago;0,7412;0,2588;Sim;Baixo
-325;Teste;Pago;Pago;0,7412;0,2588;Sim;Baixo
-555;Teste;Pago;Pago;0,5538;0,4462;Sim;Médio
-189;Teste;Pago;Pago;0,7412;0,2588;Sim;Baixo
-164;Teste;Pago;Pago;0,7412;0,2588;Sim;Baixo
-347;Teste;Pago;Pago;0,7412;0,2588;Sim;Baixo
-333;Teste;Pago;Pago;0,5538;0,4462;Sim;Médio
-612;Teste;Pago;Pago;0,7412;0,2588;Sim;Baixo
-228;Teste;Pago;Pago;0,7412;0,2588;Sim;Baixo
-496;Teste;Pago;Pago;0,5538;0,4462;Sim;Médio
-517;Teste;Pago;Não pago;0,144;0,856;Não;Alto
-645;Teste;Pago;Não pago;0,2852;0,7148;Não;Alto
-305;Teste;Não pago;Pago;0,7412;0,2588;Não;Baixo
-163;Teste;Pago;Pago;0,5538;0,4462;Sim;Médio
-516;Teste;Não pago;Não pago;0,2852;0,7148;Sim;Alto
-142;Teste;Pago;Pago;0,5538;0,4462;Sim;Médio
-236;Teste;Pago;Não pago;0,144;0,856;Não;Alto
-423;Teste;Pago;Pago;0,7412;0,2588;Sim;Baixo
-449;Teste;Pago;Pago;0,7412;0,2588;Sim;Baixo
-647;Teste;Não pago;Não pago;0,144;0,856;Sim;Alto
-185;Teste;Pago;Pago;0,7412;0,2588;Sim;Baixo
-257;Teste;Pago;Pago;0,5268;0,4732;Sim;Médio
-406;Teste;Não pago;Não pago;0,144;0,856;Sim;Alto
-640;Teste;Pago;Pago;0,5538;0,4462;Sim;Médio
-252;Teste;Pago;Pago;0,5538;0,4462;Sim;Médio
-526;Teste;Pago;Pago;0,7412;0,2588;Sim;Baixo
-426;Teste;Pago;Pago;0,7412;0,2588;Sim;Baixo
-100;Teste;Pago;Pago;0,7412;0,2588;Sim;Baixo
-126;Teste;Pago;Pago;0,5538;0,4462;Sim;Médio
-656;Teste;Pago;Pago;0,7412;0,2588;Sim;Baixo
-157;Teste;Pago;Pago;0,5268;0,4732;Sim;Médio
-407;Teste;Não pago;Não pago;0,3288;0,6712;Sim;Alto
-400;Teste;Não pago;Não pago;0,3288;0,6712;Sim;Alto
-369;Teste;Pago;Pago;0,7412;0,2588;Sim;Baixo
-588;Teste;Pago;Não pago;0,3288;0,6712;Não;Alto
-437;Teste;Pago;Pago;0,7412;0,2588;Sim;Baixo
-156;Teste;Pago;Pago;0,7412;0,2588;Sim;Baixo
-535;Teste;Pago;Pago;0,5538;0,4462;Sim;Médio
-630;Teste;Pago;Pago;0,7412;0,2588;Sim;Baixo
-234;Teste;Não pago;Não pago;0,144;0,856;Sim;Alto
-184;Teste;Pago;Pago;0,5538;0,4462;Sim;Médio
-436;Teste;Pago;Não pago;0,3288;0,6712;Não;Alto
-624;Teste;Pago;Não pago;0,2852;0,7148;Não;Alto
-614;Teste;Pago;Não pago;0,2852;0,7148;Não;Alto
-381;Teste;Não pago;Não pago;0,144;0,856;Sim;Alto
-230;Teste;Não pago;Pago;0,5538;0,4462;Não;Médio
-154;Teste;Pago;Não pago;0,3288;0,6712;Não;Alto
-620;Teste;Não pago;Não pago;0,3288;0,6712;Sim;Alto
-659;Teste;Pago;Não pago;0,2852;0,7148;Não;Alto
-289;Teste;Pago;Pago;0,7412;0,2588;Sim;Baixo
-660;Teste;Não pago;Não pago;0,3288;0,6712;Sim;Alto
-661;Teste;Pago;Pago;0,5538;0,4462;Sim;Médio
-277;Teste;Não pago;Não pago;0,144;0,856;Sim;Alto
-390;Teste;Pago;Não pago;0,3288;0,6712;Não;Alto
-615;Teste;Pago;Pago;0,7412;0,2588;Sim;Baixo
-396;Teste;Pago;Não pago;0,144;0,856;Não;Alto
-125;Teste;Pago;Pago;0,7412;0,2588;Sim;Baixo
-253;Teste;Pago;Pago;0,7412;0,2588;Sim;Baixo
-560;Teste;Pago;Pago;0,7412;0,2588;Sim;Baixo
-129;Teste;Pago;Pago;0,5268;0,4732;Sim;Médio
-4;Teste;Não pago;Pago;0,5538;0,4462;Não;Médio
-243;Teste;Não pago;Não pago;0,2852;0,7148;Sim;Alto
-353;Teste;Pago;Pago;0,7412;0,2588;Sim;Baixo
-186;Teste;Não pago;Não pago;0,144;0,856;Sim;Alto
-455;Teste;Pago;Pago;0,5268;0,4732;Sim;Médio
-161;Teste;Pago;Pago;0,7412;0,2588;Sim;Baixo
-518;Teste;Pago;Não pago;0,2852;0,7148;Não;Alto
-290;Teste;Pago;Pago;0,7412;0,2588;Sim;Baixo
-107;Teste;Não pago;Não pago;0,2852;0,7148;Sim;Alto
-413;Teste;Não pago;Não pago;0,2852;0,7148;Sim;Alto
-181;Teste;Pago;Pago;0,5538;0,4462;Sim;Médio
-64;Teste;Pago;Pago;0,5538;0,4462;Sim;Médio
-466;Teste;Pago;Pago;0,7412;0,2588;Sim;Baixo
-462;Teste;Pago;Não pago;0,144;0,856;Não;Alto
-515;Teste;Pago;Pago;0,7412;0,2588;Sim;Baixo
-3;Teste;Pago;Pago;0,5538;0,4462;Sim;Médio
-264;Teste;Não pago;Pago;0,5268;0,4732;Não;Médio
-239;Teste;Pago;Não pago;0,2852;0,7148;Não;Alto
-538;Teste;Não pago;Não pago;0,144;0,856;Sim;Alto
-123;Teste;Pago;Pago;0,7412;0,2588;Sim;Baixo
-602;Teste;Pago;Não pago;0,3288;0,6712;Não;Alto
-124;Teste;Pago;Pago;0,7412;0,2588;Sim;Baixo
-414;Teste;Pago;Pago;0,7412;0,2588;Sim;Baixo
-284;Teste;Pago;Pago;0,7412;0,2588;Sim;Baixo
-537;Teste;Pago;Pago;0,7412;0,2588;Sim;Baixo
-585;Teste;Não pago;Não pago;0,2852;0,7148;Sim;Alto
-203;Teste;Pago;Pago;0,7412;0,2588;Sim;Baixo
-354;Teste;Pago;Não pago;0,3288;0,6712;Não;Alto
-608;Teste;Pago;Pago;0,5538;0,4462;Sim;Médio
-282;Teste;Pago;Não pago;0,144;0,856;Não;Alto
-622;Teste;Pago;Pago;0,7412;0,2588;Sim;Baixo
-210;Teste;Pago;Pago;0,7412;0,2588;Sim;Baixo
-159;Teste;Pago;Pago;0,5538;0,4462;Sim;Médio
-499;Teste;Pago;Pago;0,7412;0,2588;Sim;Baixo
-483;Teste;Não pago;Não pago;0,144;0,856;Sim;Alto
-365;Teste;Não pago;Pago;0,7412;0,2588;Não;Baixo
-589;Teste;Não pago;Pago;0,5268;0,4732;Não;Médio
-597;Teste;Pago;Não pago;0,2852;0,7148;Não;Alto
-314;Teste;Pago;Pago;0,5268;0,4732;Sim;Médio
-664;Teste;Não pago;Não pago;0,144;0,856;Sim;Alto
-556;Teste;Pago;Pago;0,7412;0,2588;Sim;Baixo
-74;Teste;Não pago;Pago;0,5538;0,4462;Não;Médio
-649;Teste;Pago;Não pago;0,3288;0,6712;Não;Alto
-191;Teste;Pago;Pago;0,7412;0,2588;Sim;Baixo
-389;Teste;Pago;Pago;0,5538;0,4462;Sim;Médio
-600;Teste;Pago;Pago;0,7412;0,2588;Sim;Baixo
-336;Teste;Pago;Pago;0,7412;0,2588;Sim;Baixo
-464;Teste;Não pago;Pago;0,7412;0,2588;Não;Baixo
-652;Teste;Pago;Pago;0,7412;0,2588;Sim;Baixo
-479;Teste;Pago;Pago;0,5538;0,4462;Sim;Médio
-634;Teste;Não pago;Não pago;0,3288;0,6712;Sim;Alto
-66;Teste;Pago;Pago;0,7412;0,2588;Sim;Baixo
-304;Teste;Pago;Não pago;0,3288;0,6712;Não;Alto
-668;Aguardando pagamento;;Pago;0,7412;0,2588;;Baixo
-669;Aguardando pagamento;;Pago;0,5538;0,4462;;Médio
-670;Aguardando pagamento;;Pago;0,7412;0,2588;;Baixo
-671;Aguardando pagamento;;Pago;0,7412;0,2588;;Baixo
-672;Aguardando pagamento;;Não pago;0,3288;0,6712;;Alto
+595;Teste;Pago;Pago;0,8894;0,1106;Sim;Baixo
+342;Teste;Pago;Não pago;0,5789;0,4211;Não;Médio
+415;Teste;Pago;Pago;0,777;0,223;Sim;Baixo
+50;Teste;Pago;Pago;0,8894;0,1106;Sim;Baixo
+306;Teste;Pago;Pago;0,8894;0,1106;Sim;Baixo
+146;Teste;Pago;Pago;0,8894;0,1106;Sim;Baixo
+419;Teste;Não pago;Pago;0,8894;0,1106;Não;Baixo
+265;Teste;Não pago;Pago;0,777;0,223;Não;Baixo
+220;Teste;Pago;Não pago;0,5283;0,4717;Não;Médio
+435;Teste;Pago;Pago;0,8894;0,1106;Sim;Baixo
+109;Teste;Não pago;Não pago;0,5283;0,4717;Sim;Médio
+63;Teste;Pago;Pago;0,777;0,223;Sim;Baixo
+172;Teste;Pago;Pago;0,8894;0,1106;Sim;Baixo
+316;Teste;Não pago;Pago;0,8894;0,1106;Não;Baixo
+480;Teste;Pago;Não pago;0,5789;0,4211;Não;Médio
+619;Teste;Pago;Pago;0,7576;0,2424;Sim;Baixo
+368;Teste;Não pago;Pago;0,8894;0,1106;Não;Baixo
+258;Teste;Não pago;Não pago;0,5283;0,4717;Sim;Médio
+514;Teste;Não pago;Não pago;0,5789;0,4211;Sim;Médio
+255;Teste;Pago;Pago;0,8894;0,1106;Sim;Baixo
+570;Teste;Não pago;Não pago;0,5789;0,4211;Sim;Médio
+469;Teste;Pago;Pago;0,8894;0,1106;Sim;Baixo
+325;Teste;Pago;Pago;0,8894;0,1106;Sim;Baixo
+555;Teste;Pago;Pago;0,777;0,223;Sim;Baixo
+189;Teste;Pago;Pago;0,8894;0,1106;Sim;Baixo
+164;Teste;Pago;Pago;0,8894;0,1106;Sim;Baixo
+347;Teste;Pago;Pago;0,8894;0,1106;Sim;Baixo
+333;Teste;Pago;Pago;0,777;0,223;Sim;Baixo
+612;Teste;Pago;Pago;0,8894;0,1106;Sim;Baixo
+228;Teste;Pago;Pago;0,8894;0,1106;Sim;Baixo
+496;Teste;Pago;Pago;0,777;0,223;Sim;Baixo
+517;Teste;Pago;Não pago;0,3208;0,6792;Não;Alto
+645;Teste;Pago;Não pago;0,5283;0,4717;Não;Médio
+305;Teste;Não pago;Pago;0,8894;0,1106;Não;Baixo
+163;Teste;Pago;Pago;0,777;0,223;Sim;Baixo
+516;Teste;Não pago;Não pago;0,5283;0,4717;Sim;Médio
+142;Teste;Pago;Pago;0,777;0,223;Sim;Baixo
+236;Teste;Pago;Não pago;0,3208;0,6792;Não;Alto
+423;Teste;Pago;Pago;0,8894;0,1106;Sim;Baixo
+449;Teste;Pago;Pago;0,8894;0,1106;Sim;Baixo
+647;Teste;Não pago;Não pago;0,3208;0,6792;Sim;Alto
+185;Teste;Pago;Pago;0,8894;0,1106;Sim;Baixo
+257;Teste;Pago;Pago;0,7576;0,2424;Sim;Baixo
+406;Teste;Não pago;Não pago;0,3208;0,6792;Sim;Alto
+640;Teste;Pago;Pago;0,777;0,223;Sim;Baixo
+252;Teste;Pago;Pago;0,777;0,223;Sim;Baixo
+526;Teste;Pago;Pago;0,8894;0,1106;Sim;Baixo
+426;Teste;Pago;Pago;0,8894;0,1106;Sim;Baixo
+100;Teste;Pago;Pago;0,8894;0,1106;Sim;Baixo
+126;Teste;Pago;Pago;0,777;0,223;Sim;Baixo
+656;Teste;Pago;Pago;0,8894;0,1106;Sim;Baixo
+157;Teste;Pago;Pago;0,7576;0,2424;Sim;Baixo
+407;Teste;Não pago;Não pago;0,5789;0,4211;Sim;Médio
+400;Teste;Não pago;Não pago;0,5789;0,4211;Sim;Médio
+369;Teste;Pago;Pago;0,8894;0,1106;Sim;Baixo
+588;Teste;Pago;Não pago;0,5789;0,4211;Não;Médio
+437;Teste;Pago;Pago;0,8894;0,1106;Sim;Baixo
+156;Teste;Pago;Pago;0,8894;0,1106;Sim;Baixo
+535;Teste;Pago;Pago;0,777;0,223;Sim;Baixo
+630;Teste;Pago;Pago;0,8894;0,1106;Sim;Baixo
+234;Teste;Não pago;Não pago;0,3208;0,6792;Sim;Alto
+184;Teste;Pago;Pago;0,777;0,223;Sim;Baixo
+436;Teste;Pago;Não pago;0,5789;0,4211;Não;Médio
+624;Teste;Pago;Não pago;0,5283;0,4717;Não;Médio
+614;Teste;Pago;Não pago;0,5283;0,4717;Não;Médio
+381;Teste;Não pago;Não pago;0,3208;0,6792;Sim;Alto
+230;Teste;Não pago;Pago;0,777;0,223;Não;Baixo
+154;Teste;Pago;Não pago;0,5789;0,4211;Não;Médio
+620;Teste;Não pago;Não pago;0,5789;0,4211;Sim;Médio
+659;Teste;Pago;Não pago;0,5283;0,4717;Não;Médio
+289;Teste;Pago;Pago;0,8894;0,1106;Sim;Baixo
+660;Teste;Não pago;Não pago;0,5789;0,4211;Sim;Médio
+661;Teste;Pago;Pago;0,777;0,223;Sim;Baixo
+277;Teste;Não pago;Não pago;0,3208;0,6792;Sim;Alto
+390;Teste;Pago;Não pago;0,5789;0,4211;Não;Médio
+615;Teste;Pago;Pago;0,8894;0,1106;Sim;Baixo
+396;Teste;Pago;Não pago;0,3208;0,6792;Não;Alto
+125;Teste;Pago;Pago;0,8894;0,1106;Sim;Baixo
+253;Teste;Pago;Pago;0,8894;0,1106;Sim;Baixo
+560;Teste;Pago;Pago;0,8894;0,1106;Sim;Baixo
+129;Teste;Pago;Pago;0,7576;0,2424;Sim;Baixo
+4;Teste;Não pago;Pago;0,777;0,223;Não;Baixo
+243;Teste;Não pago;Não pago;0,5283;0,4717;Sim;Médio
+353;Teste;Pago;Pago;0,8894;0,1106;Sim;Baixo
+186;Teste;Não pago;Não pago;0,3208;0,6792;Sim;Alto
+455;Teste;Pago;Pago;0,7576;0,2424;Sim;Baixo
+161;Teste;Pago;Pago;0,8894;0,1106;Sim;Baixo
+518;Teste;Pago;Não pago;0,5283;0,4717;Não;Médio
+290;Teste;Pago;Pago;0,8894;0,1106;Sim;Baixo
+107;Teste;Não pago;Não pago;0,5283;0,4717;Sim;Médio
+413;Teste;Não pago;Não pago;0,5283;0,4717;Sim;Médio
+181;Teste;Pago;Pago;0,777;0,223;Sim;Baixo
+64;Teste;Pago;Pago;0,777;0,223;Sim;Baixo
+466;Teste;Pago;Pago;0,8894;0,1106;Sim;Baixo
+462;Teste;Pago;Não pago;0,3208;0,6792;Não;Alto
+515;Teste;Pago;Pago;0,8894;0,1106;Sim;Baixo
+3;Teste;Pago;Pago;0,777;0,223;Sim;Baixo
+264;Teste;Não pago;Pago;0,7576;0,2424;Não;Baixo
+239;Teste;Pago;Não pago;0,5283;0,4717;Não;Médio
+538;Teste;Não pago;Não pago;0,3208;0,6792;Sim;Alto
+123;Teste;Pago;Pago;0,8894;0,1106;Sim;Baixo
+602;Teste;Pago;Não pago;0,5789;0,4211;Não;Médio
+124;Teste;Pago;Pago;0,8894;0,1106;Sim;Baixo
+414;Teste;Pago;Pago;0,8894;0,1106;Sim;Baixo
+284;Teste;Pago;Pago;0,8894;0,1106;Sim;Baixo
+537;Teste;Pago;Pago;0,8894;0,1106;Sim;Baixo
+585;Teste;Não pago;Não pago;0,5283;0,4717;Sim;Médio
+203;Teste;Pago;Pago;0,8894;0,1106;Sim;Baixo
+354;Teste;Pago;Não pago;0,5789;0,4211;Não;Médio
+608;Teste;Pago;Pago;0,777;0,223;Sim;Baixo
+282;Teste;Pago;Não pago;0,3208;0,6792;Não;Alto
+622;Teste;Pago;Pago;0,8894;0,1106;Sim;Baixo
+210;Teste;Pago;Pago;0,8894;0,1106;Sim;Baixo
+159;Teste;Pago;Pago;0,777;0,223;Sim;Baixo
+499;Teste;Pago;Pago;0,8894;0,1106;Sim;Baixo
+483;Teste;Não pago;Não pago;0,3208;0,6792;Sim;Alto
+365;Teste;Não pago;Pago;0,8894;0,1106;Não;Baixo
+589;Teste;Não pago;Pago;0,7576;0,2424;Não;Baixo
+597;Teste;Pago;Não pago;0,5283;0,4717;Não;Médio
+314;Teste;Pago;Pago;0,7576;0,2424;Sim;Baixo
+664;Teste;Não pago;Não pago;0,3208;0,6792;Sim;Alto
+556;Teste;Pago;Pago;0,8894;0,1106;Sim;Baixo
+74;Teste;Não pago;Pago;0,777;0,223;Não;Baixo
+649;Teste;Pago;Não pago;0,5789;0,4211;Não;Médio
+191;Teste;Pago;Pago;0,8894;0,1106;Sim;Baixo
+389;Teste;Pago;Pago;0,777;0,223;Sim;Baixo
+600;Teste;Pago;Pago;0,8894;0,1106;Sim;Baixo
+336;Teste;Pago;Pago;0,8894;0,1106;Sim;Baixo
+464;Teste;Não pago;Pago;0,8894;0,1106;Não;Baixo
+652;Teste;Pago;Pago;0,8894;0,1106;Sim;Baixo
+479;Teste;Pago;Pago;0,777;0,223;Sim;Baixo
+634;Teste;Não pago;Não pago;0,5789;0,4211;Sim;Médio
+66;Teste;Pago;Pago;0,8894;0,1106;Sim;Baixo
+304;Teste;Pago;Não pago;0,5789;0,4211;Não;Médio
+668;Aguardando pagamento;;Pago;0,8894;0,1106;;Baixo
+669;Aguardando pagamento;;Pago;0,777;0,223;;Baixo
+670;Aguardando pagamento;;Pago;0,8894;0,1106;;Baixo
+671;Aguardando pagamento;;Pago;0,8894;0,1106;;Baixo
+672;Aguardando pagamento;;Não pago;0,5789;0,4211;;Médio
