@@ -31,6 +31,3 @@ Thumbs.db
 # Logs
 *.log
 
-
-# Exportação do Power BI para entrega
-*.pbix
