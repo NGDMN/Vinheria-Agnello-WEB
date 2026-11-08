@@ -1,0 +1,37 @@
+table produtos_pedidos
+	lineageTag: c0187c9b-97ed-457b-bfc5-c63d5fe18740
+
+	column id_pedido
+		dataType: int64
+		formatString: 0
+		lineageTag: f0909f48-3943-459a-910b-0e7a7bbec614
+		summarizeBy: none
+		sourceColumn: id_pedido
+
+	column id_produto
+		dataType: int64
+		formatString: 0
+		lineageTag: df8a38ef-51d3-4f5f-b123-90246cf880d7
+		summarizeBy: none
+		sourceColumn: id_produto
+
+	column quantidade
+		dataType: int64
+		formatString: 0
+		lineageTag: 2259df4e-3585-4d02-9f5b-15c4fd169ee3
+		summarizeBy: none
+		sourceColumn: quantidade
+
+	column preco_unitario
+		dataType: decimal
+		formatString: #,0.00
+		lineageTag: c9ecb13d-fb7e-4f99-bb4f-55e11342e743
+		summarizeBy: none
+		sourceColumn: preco_unitario
+
+	partition produtos_pedidos = m
+		mode: import
+		source = fnCarregarAba("produtos_pedidos", {{"id_pedido", Int64.Type}, {"id_produto", Int64.Type}, {"quantidade", Int64.Type}, {"preco_unitario", Currency.Type}})
+
+	annotation PBI_ResultType = Table
+

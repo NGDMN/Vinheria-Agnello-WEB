@@ -1,0 +1,160 @@
+table pedidos
+	lineageTag: e341f9f0-050d-4ad1-93de-576966d373b9
+
+	column id_pedido
+		dataType: int64
+		formatString: 0
+		lineageTag: 595565bd-7f21-4309-bf1d-2f6b448924ae
+		summarizeBy: none
+		sourceColumn: id_pedido
+
+	column id_cliente
+		dataType: int64
+		formatString: 0
+		lineageTag: a83a07f0-92a1-4f67-941e-572f692c27f6
+		summarizeBy: none
+		sourceColumn: id_cliente
+
+	column data_pedido
+		dataType: dateTime
+		formatString: dd/MM/yyyy
+		lineageTag: 4be27c5d-85cd-40cf-a075-ef3b29ea98e7
+		summarizeBy: none
+		sourceColumn: data_pedido
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column canal
+		dataType: string
+		lineageTag: 7ffa3942-5bb4-4af2-b6f4-3804006fc96e
+		summarizeBy: none
+		sourceColumn: canal
+
+	column uf_destino
+		dataType: string
+		lineageTag: e924d139-4ff7-4ee0-aa0d-aa4a0d20e735
+		summarizeBy: none
+		sourceColumn: uf_destino
+
+	column tipo_frete
+		dataType: string
+		lineageTag: 06b53b17-5703-4f96-a7b5-77286770b4be
+		summarizeBy: none
+		sourceColumn: tipo_frete
+
+	column valor_frete
+		dataType: decimal
+		formatString: #,0.00
+		lineageTag: c391823d-9f16-4bf8-a75b-ecd55f97bc60
+		summarizeBy: none
+		sourceColumn: valor_frete
+
+	column prazo_entrega_dias
+		dataType: int64
+		formatString: 0
+		lineageTag: 06c2ecb0-2a1c-4f2c-af10-87621706e86e
+		summarizeBy: none
+		sourceColumn: prazo_entrega_dias
+
+	column forma_pagamento
+		dataType: string
+		lineageTag: 5d296cae-8e08-48a3-af79-aca929b63dfd
+		summarizeBy: none
+		sourceColumn: forma_pagamento
+
+	column pct_desconto
+		dataType: double
+		lineageTag: d1cef927-7a1d-4777-8636-5ec0d974e733
+		summarizeBy: none
+		sourceColumn: pct_desconto
+
+	column valor_total
+		dataType: decimal
+		formatString: #,0.00
+		lineageTag: 1289ccde-3bbf-4f87-8ae5-a5cce4124d44
+		summarizeBy: none
+		sourceColumn: valor_total
+
+	column status_pedido
+		dataType: string
+		lineageTag: c39cef49-4c70-4f98-837f-6b0af68877c7
+		summarizeBy: none
+		sourceColumn: status_pedido
+
+	column status_entrega
+		dataType: string
+		lineageTag: 479fc3b5-e3ad-453e-9210-f9ffa5d5a5ae
+		summarizeBy: none
+		sourceColumn: status_entrega
+
+	column venda_sucesso
+		dataType: int64
+		formatString: 0
+		lineageTag: 4cc19606-be0b-4c4f-80eb-6f554eb6b768
+		summarizeBy: none
+		sourceColumn: venda_sucesso
+
+	column motivo_insucesso
+		dataType: string
+		lineageTag: 630ede63-12c0-4001-86cf-0a87dbc0638e
+		summarizeBy: none
+		sourceColumn: motivo_insucesso
+
+	column pedidos_anteriores
+		dataType: int64
+		formatString: 0
+		lineageTag: 85d5128e-d658-4bbd-b7db-4e538fa1b411
+		summarizeBy: none
+		sourceColumn: pedidos_anteriores
+
+	column variacao_pedido_anterior_pct
+		dataType: double
+		lineageTag: 824a68ea-12fa-455c-a94b-6df77a8aff28
+		summarizeBy: none
+		sourceColumn: variacao_pedido_anterior_pct
+
+	column FaixaPrazo = SWITCH ( TRUE (), pedidos[prazo_entrega_dias] <= 3, "0-3 dias", pedidos[prazo_entrega_dias] <= 6, "4-6 dias", pedidos[prazo_entrega_dias] <= 10, "7-10 dias", "11+ dias" )
+		dataType: string
+		lineageTag: 2b380c15-5876-43f8-802a-508507183d6a
+		summarizeBy: none
+		sortByColumn: FaixaPrazoOrdem
+
+	column FaixaPrazoOrdem = SWITCH ( TRUE (), pedidos[prazo_entrega_dias] <= 3, 1, pedidos[prazo_entrega_dias] <= 6, 2, pedidos[prazo_entrega_dias] <= 10, 3, 4 )
+		dataType: int64
+		isHidden
+		lineageTag: daff4cec-bd29-4624-a949-823ffe91d82e
+		summarizeBy: none
+
+	column Situacao = SWITCH ( pedidos[venda_sucesso], 1, "Pago", 0, "Não pago", "Aguardando" )
+		dataType: string
+		lineageTag: 152972e8-d38b-4acd-97f1-fd72ad918ada
+		summarizeBy: none
+
+	column FaixaVariacao = SWITCH ( TRUE (), ISBLANK ( pedidos[variacao_pedido_anterior_pct] ), "Primeiro pedido", pedidos[variacao_pedido_anterior_pct] <= 0, "Redução", pedidos[variacao_pedido_anterior_pct] <= 50, "Aumento até 50%", "Aumento acima de 50%" )
+		dataType: string
+		lineageTag: 55306864-03d4-41d3-b1e9-c7f33ebd4ac3
+		summarizeBy: none
+		sortByColumn: FaixaVariacaoOrdem
+
+	column FaixaVariacaoOrdem = SWITCH ( TRUE (), ISBLANK ( pedidos[variacao_pedido_anterior_pct] ), 1, pedidos[variacao_pedido_anterior_pct] <= 0, 2, pedidos[variacao_pedido_anterior_pct] <= 50, 3, 4 )
+		dataType: int64
+		isHidden
+		lineageTag: a0fac872-c223-4b77-9790-09bd3f55d1a3
+		summarizeBy: none
+
+	partition pedidos = m
+		mode: import
+		source =
+				let
+				    Pedidos = fnCarregarAba("pedidos", {{"id_pedido", Int64.Type}, {"id_cliente", Int64.Type}, {"data_pedido", type date}, {"canal", type text}, {"uf_destino", type text}, {"tipo_frete", type text}, {"valor_frete", Currency.Type}, {"prazo_entrega_dias", Int64.Type}, {"forma_pagamento", type text}, {"pct_desconto", type number}, {"valor_total", Currency.Type}, {"status_pedido", type text}, {"status_entrega", type text}, {"venda_sucesso", Int64.Type}, {"motivo_insucesso", type text}}),
+				    BaseMl = Table.SelectColumns(
+				        fnCarregarAba("base_ml", {{"id_pedido", Int64.Type}, {"pedidos_anteriores", Int64.Type}, {"variacao_pedido_anterior_pct", type number}}),
+				        {"id_pedido", "pedidos_anteriores", "variacao_pedido_anterior_pct"}),
+				    Juncao = Table.NestedJoin(Pedidos, {"id_pedido"}, BaseMl, {"id_pedido"}, "ml", JoinKind.LeftOuter),
+				    Expandido = Table.ExpandTableColumn(Juncao, "ml", {"pedidos_anteriores", "variacao_pedido_anterior_pct"}),
+				    Tipado = Table.TransformColumnTypes(Expandido, {{"pedidos_anteriores", Int64.Type}, {"variacao_pedido_anterior_pct", type number}})
+				in
+				    Tipado
+
+	annotation PBI_ResultType = Table
+

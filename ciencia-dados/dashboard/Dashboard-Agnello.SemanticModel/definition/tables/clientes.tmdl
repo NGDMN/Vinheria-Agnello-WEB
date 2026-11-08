@@ -1,0 +1,37 @@
+table clientes
+	lineageTag: 4c7aaf6f-8e0e-4369-95d3-68969611e6aa
+
+	column id_cliente
+		dataType: int64
+		formatString: 0
+		lineageTag: 51a558e5-5f42-485d-a017-6b4b9c98c5c2
+		summarizeBy: none
+		sourceColumn: id_cliente
+
+	column tipo_cliente
+		dataType: string
+		lineageTag: b9723a6e-66a5-4f71-b2ba-c37f21f63586
+		summarizeBy: none
+		sourceColumn: tipo_cliente
+
+	column uf
+		dataType: string
+		lineageTag: 1d3fa651-e325-421c-acfb-fb805a52b787
+		summarizeBy: none
+		sourceColumn: uf
+
+	column data_cadastro
+		dataType: dateTime
+		formatString: dd/MM/yyyy
+		lineageTag: 139ae238-b4e4-473f-8222-cc9d7387e8f7
+		summarizeBy: none
+		sourceColumn: data_cadastro
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	partition clientes = m
+		mode: import
+		source = fnCarregarAba("clientes", {{"id_cliente", Int64.Type}, {"tipo_cliente", type text}, {"uf", type text}, {"data_cadastro", type date}})
+
+	annotation PBI_ResultType = Table
+

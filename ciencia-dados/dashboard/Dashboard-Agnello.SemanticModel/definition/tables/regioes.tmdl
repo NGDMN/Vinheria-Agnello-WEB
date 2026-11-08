@@ -1,0 +1,21 @@
+table regioes
+	lineageTag: c05c0ff1-cfad-4d2b-a68d-39554c4759a8
+
+	column uf
+		dataType: string
+		lineageTag: 0b2076bb-4e52-4bac-8c81-079eff09827a
+		summarizeBy: none
+		sourceColumn: uf
+
+	column regiao
+		dataType: string
+		lineageTag: fbff605d-73f0-4195-ae6e-3a48a6ebd32c
+		summarizeBy: none
+		sourceColumn: regiao
+
+	partition regioes = m
+		mode: import
+		source = fnCarregarAba("regioes", {{"uf", type text}, {"regiao", type text}})
+
+	annotation PBI_ResultType = Table
+

@@ -1,0 +1,11 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "SemanticModel",
+    "displayName": "Dashboard-Agnello"
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "4e9cb9a3-4f5c-45fa-9f11-2c79150d5fcb"
+  }
+}

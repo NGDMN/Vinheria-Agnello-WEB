@@ -1,0 +1,130 @@
+table _Medidas
+	lineageTag: f9cfb127-34a8-46fd-a823-bfd8b0ad1ea2
+
+	measure Pedidos = COUNTROWS ( pedidos )
+		formatString: #,0
+		lineageTag: f83f216a-e09d-4702-b2d4-2e78bd9a3245
+
+	measure 'Pedidos Fechados' = CALCULATE ( [Pedidos], NOT ISBLANK ( pedidos[venda_sucesso] ) )
+		formatString: #,0
+		lineageTag: 46b1d61f-0959-4bde-834c-3c378579ed7e
+
+	measure 'Pedidos Pagos' = CALCULATE ( [Pedidos], pedidos[venda_sucesso] = 1 )
+		formatString: #,0
+		lineageTag: 8070a42c-5957-4db7-9d7e-e19b3a95d847
+
+	measure 'Taxa de Conversao' = DIVIDE ( [Pedidos Pagos], [Pedidos Fechados] )
+		formatString: 0.0%
+		lineageTag: 8d2acad4-eaa9-41bf-8dae-618fe0d52021
+
+	measure 'Receita Paga' = CALCULATE ( SUM ( pedidos[valor_total] ), pedidos[venda_sucesso] = 1 )
+		formatString: #,0.00
+		lineageTag: 78e5b54c-aabd-4da7-b910-039b92cb10cf
+
+	measure 'Receita Perdida' = CALCULATE ( SUM ( pedidos[valor_total] ), pedidos[venda_sucesso] = 0 )
+		formatString: #,0.00
+		lineageTag: ce4e0591-5672-4b8e-a1db-84618d8f1833
+
+	measure 'Ticket Medio' = DIVIDE ( [Receita Paga], [Pedidos Pagos] )
+		formatString: #,0.00
+		lineageTag: 87b197fd-971f-4a2c-8795-ca8949af936a
+
+	measure 'Receita Paga por Produto' =
+			SUMX (
+			    FILTER ( produtos_pedidos, RELATED ( pedidos[venda_sucesso] ) = 1 ),
+			    produtos_pedidos[quantidade] * produtos_pedidos[preco_unitario]
+			        * ( 1 - RELATED ( pedidos[pct_desconto] ) / 100 )
+			)
+		formatString: #,0.00
+		lineageTag: 1b7b6de4-1a74-4ead-9453-0addc9e34d2c
+
+	measure 'Garrafas Vendidas' =
+			SUMX (
+			    FILTER ( produtos_pedidos, RELATED ( pedidos[venda_sucesso] ) = 1 ),
+			    produtos_pedidos[quantidade]
+			)
+		formatString: #,0
+		lineageTag: 8da808fc-732d-4216-adc9-8370a86431e7
+
+	measure 'Acuracia Teste' =
+			DIVIDE (
+			    CALCULATE ( COUNTROWS ( previsoes ), previsoes[acerto] = "Sim" ),
+			    CALCULATE ( COUNTROWS ( previsoes ), previsoes[conjunto] = "Teste" )
+			)
+		formatString: 0.0%
+		lineageTag: 85948114-5a48-4990-b37e-85353086fe85
+
+	measure 'Aguardando em Risco' =
+			CALCULATE (
+			    COUNTROWS ( previsoes ),
+			    previsoes[conjunto] = "Aguardando pagamento",
+			    previsoes[faixa_risco] IN { "Alto", "Médio" }
+			)
+		formatString: #,0
+		lineageTag: 03a23d59-b199-4c66-9c3d-a545ed38e874
+
+	measure 'Valor do Pedido' = SUM ( pedidos[valor_total] )
+		formatString: #,0.00
+		lineageTag: 74737d28-ac6c-4687-b9d6-244bcfbd5060
+
+	measure 'Variacao Pedido %' = AVERAGE ( pedidos[variacao_pedido_anterior_pct] ) / 100
+		formatString: 0%
+		lineageTag: 40ae1d8a-dab6-41ed-ab98-33f09c1b142e
+
+	measure 'Receita Paga AA' = CALCULATE ( [Receita Paga], SAMEPERIODLASTYEAR ( Calendario[Date] ) )
+		formatString: #,0.00
+		lineageTag: d9a4346a-d9e8-418b-9f14-93bfae831920
+
+	measure 'Var Receita AA' = DIVIDE ( [Receita Paga] - [Receita Paga AA], [Receita Paga AA] )
+		formatString: 0.0%
+		lineageTag: 4c88f833-0f3b-4918-b468-365814acb2ca
+
+	measure 'Var Receita AA Texto' = IF ( ISBLANK ( [Var Receita AA] ), BLANK (), IF ( [Var Receita AA] >= 0, "▲ ", "▼ " ) & FORMAT ( [Var Receita AA], "0.0%" ) & " vs ano anterior" )
+		lineageTag: 531907de-02cf-4c6e-a0e0-14a2811a88f4
+
+	measure 'Var Receita AA Cor' = IF ( [Var Receita AA] >= 0, "#2E6B3A", "#B3261E" )
+		lineageTag: 8ec37d12-fdf1-4c35-af5f-600eac68ba36
+
+	measure 'Pedidos Previstos' = COUNTROWS ( previsoes )
+		formatString: #,0
+		lineageTag: b34a1eca-cef5-4ebb-be08-3892d2eb49ba
+
+	measure 'Recall Nao Pago' =
+			DIVIDE (
+			    CALCULATE ( COUNTROWS ( previsoes ), previsoes[conjunto] = "Teste", previsoes[real] = "Não pago", previsoes[previsto] = "Não pago" ),
+			    CALCULATE ( COUNTROWS ( previsoes ), previsoes[conjunto] = "Teste", previsoes[real] = "Não pago" )
+			)
+		formatString: 0.0%
+		lineageTag: 541a3818-1a22-4b08-bcf2-57ec84b10acd
+
+	measure 'Precisao Nao Pago' =
+			DIVIDE (
+			    CALCULATE ( COUNTROWS ( previsoes ), previsoes[conjunto] = "Teste", previsoes[real] = "Não pago", previsoes[previsto] = "Não pago" ),
+			    CALCULATE ( COUNTROWS ( previsoes ), previsoes[conjunto] = "Teste", previsoes[previsto] = "Não pago" )
+			)
+		formatString: 0.0%
+		lineageTag: 360687a2-093a-4056-a63f-a2d828c044a5
+
+	measure 'Acuracia Balanceada' = VAR TP = CALCULATE ( COUNTROWS ( previsoes ), previsoes[conjunto] = "Teste", previsoes[real] = "Não pago", previsoes[previsto] = "Não pago" ) VAR P = CALCULATE ( COUNTROWS ( previsoes ), previsoes[conjunto] = "Teste", previsoes[real] = "Não pago" ) VAR TN = CALCULATE ( COUNTROWS ( previsoes ), previsoes[conjunto] = "Teste", previsoes[real] = "Pago", previsoes[previsto] = "Pago" ) VAR N = CALCULATE ( COUNTROWS ( previsoes ), previsoes[conjunto] = "Teste", previsoes[real] = "Pago" ) RETURN DIVIDE ( DIVIDE ( TP, P ) + DIVIDE ( TN, N ), 2 )
+		formatString: 0.0%
+
+	measure 'Taxa Nao Pagamento Teste' = DIVIDE ( CALCULATE ( COUNTROWS ( previsoes ), previsoes[conjunto] = "Teste", previsoes[real] = "Não pago" ), CALCULATE ( COUNTROWS ( previsoes ), previsoes[conjunto] = "Teste" ) )
+		formatString: 0.0%
+
+	measure 'Prob Nao Pagamento' = MAX ( previsoes[prob_nao_pagamento] )
+		formatString: 0.0%
+
+	measure 'Faixa Risco Pedido' = SELECTEDVALUE ( previsoes[faixa_risco] )
+
+	column Valor
+		dataType: int64
+		isHidden
+		lineageTag: e840e048-b00f-4269-b740-33feec727892
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Valor]
+
+	partition _Medidas = calculated
+		mode: import
+		source = ROW ( "Valor", 0 )
+

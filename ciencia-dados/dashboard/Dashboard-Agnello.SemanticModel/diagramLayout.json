@@ -1,0 +1,139 @@
+{
+  "version": "1.1.0",
+  "diagrams": [
+    {
+      "ordinal": 0,
+      "scrollPosition": {
+        "x": 0,
+        "y": 0
+      },
+      "nodes": [
+        {
+          "location": {
+            "x": 1317.0364534350922,
+            "y": 28.106597003732531
+          },
+          "nodeIndex": "_Medidas",
+          "nodeLineageTag": "f9cfb127-34a8-46fd-a823-bfd8b0ad1ea2",
+          "size": {
+            "height": 674.88261716554621,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 21.821844301090039,
+            "y": 678.82777265146262
+          },
+          "nodeIndex": "Calendario",
+          "nodeLineageTag": "4c0258e1-7f98-4448-9508-e029fe442a9d",
+          "size": {
+            "height": 262.05199497545016,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 877.9440184008015,
+            "y": 0
+          },
+          "nodeIndex": "clientes",
+          "nodeLineageTag": "4c7aaf6f-8e0e-4369-95d3-68969611e6aa",
+          "size": {
+            "height": 204.18666294477791,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 641.2336405694507,
+            "y": 181.53468571816944
+          },
+          "nodeIndex": "pedidos",
+          "nodeLineageTag": "e341f9f0-050d-4ad1-93de-576966d373b9",
+          "size": {
+            "height": 662.19861884039608,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 414.22006487221734,
+            "y": 709
+          },
+          "nodeIndex": "previsoes",
+          "nodeLineageTag": "61182d86-fdf8-498c-b1a2-04558403ee75",
+          "size": {
+            "height": 288.91199776686676,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 380,
+            "y": 68
+          },
+          "nodeIndex": "produtos",
+          "nodeLineageTag": "68cf0566-3752-4381-8949-1e0a14287c13",
+          "size": {
+            "height": 218.32133091410566,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 0,
+            "y": 325
+          },
+          "nodeIndex": "produtos_pedidos",
+          "nodeLineageTag": "c0187c9b-97ed-457b-bfc5-c63d5fe18740",
+          "size": {
+            "height": 194.32666015336133,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 970.48179384001412,
+            "y": 853.19252306380326
+          },
+          "nodeIndex": "regioes",
+          "nodeLineageTag": "c05c0ff1-cfad-4d2b-a68d-39554c4759a8",
+          "size": {
+            "height": 128,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 45,
+            "y": 0
+          },
+          "nodeIndex": "rupturas_estoque",
+          "nodeLineageTag": "c1c06fcd-6764-43d0-bf3d-0db78e61041b",
+          "size": {
+            "height": 185.86533203067228,
+            "width": 234
+          },
+          "zIndex": 0
+        }
+      ],
+      "name": "Todas as tabelas",
+      "zoomValue": 70.95554390096882,
+      "pinKeyFieldsToTop": false,
+      "showExtraHeaderInfo": false,
+      "hideKeyFieldsWhenCollapsed": false,
+      "tablesLocked": false
+    }
+  ],
+  "selectedDiagram": "Todas as tabelas",
+  "defaultDiagram": "Todas as tabelas"
+}

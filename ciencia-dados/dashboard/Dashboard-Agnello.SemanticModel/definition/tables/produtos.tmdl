@@ -1,0 +1,41 @@
+table produtos
+	lineageTag: 68cf0566-3752-4381-8949-1e0a14287c13
+
+	column id_produto
+		dataType: int64
+		formatString: 0
+		lineageTag: e4b17853-df6f-4368-b9a9-d75be6b49b50
+		summarizeBy: none
+		sourceColumn: id_produto
+
+	column nome_vinho
+		dataType: string
+		lineageTag: 1a834326-ecb5-40db-b0ad-d2ac1778772c
+		summarizeBy: none
+		sourceColumn: nome_vinho
+
+	column tipo_vinho
+		dataType: string
+		lineageTag: ad426448-cefb-48c6-a522-ee15250486b3
+		summarizeBy: none
+		sourceColumn: tipo_vinho
+
+	column pais_origem
+		dataType: string
+		lineageTag: e01d9588-fc9d-45c5-b035-faaa6c07510e
+		summarizeBy: none
+		sourceColumn: pais_origem
+
+	column preco_unitario
+		dataType: decimal
+		formatString: #,0.00
+		lineageTag: 099d784f-c049-4b4d-9df9-e83037686901
+		summarizeBy: none
+		sourceColumn: preco_unitario
+
+	partition produtos = m
+		mode: import
+		source = fnCarregarAba("produtos", {{"id_produto", Int64.Type}, {"nome_vinho", type text}, {"tipo_vinho", type text}, {"pais_origem", type text}, {"preco_unitario", Currency.Type}})
+
+	annotation PBI_ResultType = Table
+

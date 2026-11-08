@@ -1,0 +1,69 @@
+table previsoes
+	lineageTag: 61182d86-fdf8-498c-b1a2-04558403ee75
+
+	column id_pedido
+		dataType: int64
+		formatString: 0
+		lineageTag: 7dc23638-f261-4f57-be61-5bb3134a0c5c
+		summarizeBy: none
+		sourceColumn: id_pedido
+
+	column conjunto
+		dataType: string
+		lineageTag: d8e3cb24-1390-4cdd-bf6e-8f20d1adb5f8
+		summarizeBy: none
+		sourceColumn: conjunto
+
+	column real
+		dataType: string
+		lineageTag: 40996ca4-fd47-421e-8368-31e8eccbe273
+		summarizeBy: none
+		sourceColumn: real
+
+	column previsto
+		dataType: string
+		lineageTag: 1906d155-5f9b-43ba-9823-a3887a9a17ec
+		summarizeBy: none
+		sourceColumn: previsto
+
+	column prob_pagamento
+		dataType: double
+		formatString: 0.0%
+		lineageTag: 638caf9b-f84a-42c2-b53a-031bd1576b57
+		summarizeBy: none
+		sourceColumn: prob_pagamento
+
+	column prob_nao_pagamento
+		dataType: double
+		formatString: 0.0%
+		lineageTag: aa5a012d-e04e-4bb6-9149-a0928647e7b4
+		summarizeBy: none
+		sourceColumn: prob_nao_pagamento
+
+	column acerto
+		dataType: string
+		lineageTag: 787dc31a-d490-46ec-9aa4-4a3f080e1343
+		summarizeBy: none
+		sourceColumn: acerto
+
+	column faixa_risco
+		dataType: string
+		lineageTag: 69629fa0-9134-4e54-abaa-9df48daed366
+		summarizeBy: none
+		sourceColumn: faixa_risco
+
+	partition previsoes = m
+		mode: import
+		source =
+				let
+				    Fonte = Csv.Document(File.Contents(CaminhoPasta & "resultados\previsoes.csv"),
+				        [Delimiter = ";", Columns = 8, Encoding = 65001, QuoteStyle = QuoteStyle.Csv]),
+				    Cabecalho = Table.PromoteHeaders(Fonte, [PromoteAllScalars = true]),
+				    Tipado = Table.TransformColumnTypes(Cabecalho, {{"id_pedido", Int64.Type}, {"conjunto", type text},
+				        {"real", type text}, {"previsto", type text}, {"prob_pagamento", type number},
+				        {"prob_nao_pagamento", type number}, {"acerto", type text}, {"faixa_risco", type text}}, "pt-BR")
+				in
+				    Tipado
+
+	annotation PBI_ResultType = Table
+

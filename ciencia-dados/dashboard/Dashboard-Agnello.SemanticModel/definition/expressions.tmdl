@@ -1,0 +1,18 @@
+expression CaminhoPasta = "C:\Dev\PBL\PBLY3\Sprint3\Vinheria-Agnello-WEB\ciencia-dados\" meta [IsParameterQuery=true, Type="Text", IsParameterQueryRequired=true]
+	lineageTag: ab75efe3-1fb4-48b5-b905-2814531d4371
+
+	annotation PBI_ResultType = Text
+
+expression fnCarregarAba =
+		(nomeAba as text, tipos as list) as table =>
+		let
+		    Fonte = Excel.Workbook(File.Contents(CaminhoPasta & "data\vinheria_fase3.xlsx"), null, true),
+		    Aba = Fonte{[Item = nomeAba, Kind = "Sheet"]}[Data],
+		    Cabecalho = Table.PromoteHeaders(Aba, [PromoteAllScalars = true]),
+		    Tipado = Table.TransformColumnTypes(Cabecalho, tipos)
+		in
+		    Tipado
+	lineageTag: f605dc24-5beb-4f69-863d-28034100170a
+
+	annotation PBI_ResultType = Function
+

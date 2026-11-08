@@ -1,0 +1,65 @@
+table Calendario
+	lineageTag: 4c0258e1-7f98-4448-9508-e029fe442a9d
+	dataCategory: Time
+
+	column Date
+		dataType: dateTime
+		isKey
+		formatString: Short Date
+		lineageTag: 52ea3a6e-4629-4dc3-8082-cf7757d2c8f9
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Date]
+
+	column Ano
+		dataType: int64
+		formatString: 0
+		lineageTag: a17fac5a-5e17-4ebc-804b-192d4565c44d
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Ano]
+
+	column Mes
+		dataType: int64
+		formatString: 0
+		lineageTag: cd6848fb-f878-402a-b05c-2d2acfa4c1c1
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Mes]
+
+	column AnoMes
+		dataType: string
+		lineageTag: c89fe4d6-c2b3-42d4-9c87-c46d0f9c1262
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [AnoMes]
+
+	column MesAno
+		dataType: string
+		lineageTag: 7819ad13-d984-408a-af45-65575d9f797f
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [MesAno]
+		sortByColumn: AnoMes
+
+	column MesParcial
+		dataType: boolean
+		lineageTag: 116e09b6-5f47-41a3-bcf8-ad3c21f5e366
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [MesParcial]
+
+	partition Calendario = calculated
+		mode: import
+		source =
+				VAR UltimoPedido = MAX ( pedidos[data_pedido] )
+				RETURN
+				    ADDCOLUMNS (
+				        CALENDAR ( MIN ( pedidos[data_pedido] ), EOMONTH ( UltimoPedido, 0 ) ),
+				        "Ano", YEAR ( [Date] ),
+				        "Mes", MONTH ( [Date] ),
+				        "AnoMes", FORMAT ( [Date], "yyyy-mm" ),
+				        "MesAno", FORMAT ( [Date], "mmm/yy" ),
+				        "MesParcial", EOMONTH ( [Date], 0 ) > UltimoPedido
+				    )
+

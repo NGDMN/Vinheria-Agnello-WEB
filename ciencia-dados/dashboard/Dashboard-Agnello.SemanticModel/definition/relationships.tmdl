@@ -1,0 +1,29 @@
+relationship pedidos_Calendario
+	fromColumn: pedidos.data_pedido
+	toColumn: Calendario.Date
+
+relationship pedidos_clientes
+	fromColumn: pedidos.id_cliente
+	toColumn: clientes.id_cliente
+
+relationship pedidos_regioes
+	fromColumn: pedidos.uf_destino
+	toColumn: regioes.uf
+
+relationship produtos_pedidos_pedidos
+	crossFilteringBehavior: bothDirections
+	fromColumn: produtos_pedidos.id_pedido
+	toColumn: pedidos.id_pedido
+
+relationship produtos_pedidos_produtos
+	fromColumn: produtos_pedidos.id_produto
+	toColumn: produtos.id_produto
+
+relationship rupturas_estoque_produtos
+	fromColumn: rupturas_estoque.id_produto
+	toColumn: produtos.id_produto
+
+relationship previsoes_pedidos
+	fromColumn: previsoes.id_pedido
+	toColumn: pedidos.id_pedido
+

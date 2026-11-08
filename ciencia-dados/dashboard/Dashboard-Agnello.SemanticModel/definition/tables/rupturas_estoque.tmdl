@@ -1,0 +1,40 @@
+table rupturas_estoque
+	lineageTag: c1c06fcd-6764-43d0-bf3d-0db78e61041b
+
+	column id_produto
+		dataType: int64
+		formatString: 0
+		lineageTag: 9234cf85-bfbc-4e4c-bd2b-e5599331379a
+		summarizeBy: none
+		sourceColumn: id_produto
+
+	column data_inicio
+		dataType: dateTime
+		formatString: dd/MM/yyyy
+		lineageTag: 888c2fe3-ed57-423a-a4ce-bbff6d64fd2e
+		summarizeBy: none
+		sourceColumn: data_inicio
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column data_fim
+		dataType: dateTime
+		formatString: dd/MM/yyyy
+		lineageTag: 89c6772e-0c69-44a9-8bdd-9cd0ad5b688a
+		summarizeBy: none
+		sourceColumn: data_fim
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column tipo_ruptura
+		dataType: string
+		lineageTag: 07621342-a8d0-400b-acf4-3e34704ec2b8
+		summarizeBy: none
+		sourceColumn: tipo_ruptura
+
+	partition rupturas_estoque = m
+		mode: import
+		source = fnCarregarAba("rupturas_estoque", {{"id_produto", Int64.Type}, {"data_inicio", type date}, {"data_fim", type date}, {"tipo_ruptura", type text}})
+
+	annotation PBI_ResultType = Table
+
