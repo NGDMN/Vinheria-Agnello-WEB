@@ -29,6 +29,12 @@ table clientes
 
 		annotation UnderlyingDateTimeDataType = Date
 
+	column tipo_cliente_en = LOOKUPVALUE ( TradValores[en], TradValores[atributo], "tipo_cliente", TradValores[pt], clientes[tipo_cliente], clientes[tipo_cliente] )
+		dataType: string
+		isHidden
+		lineageTag: e82306a7-0fa7-4b44-838f-25c88c91fcae
+		summarizeBy: none
+
 	partition clientes = m
 		mode: import
 		source = fnCarregarAba("clientes", {{"id_cliente", Int64.Type}, {"tipo_cliente", type text}, {"uf", type text}, {"data_cadastro", type date}})

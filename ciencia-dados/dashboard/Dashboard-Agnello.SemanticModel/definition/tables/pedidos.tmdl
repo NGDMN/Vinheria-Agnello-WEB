@@ -142,6 +142,38 @@ table pedidos
 		lineageTag: a0fac872-c223-4b77-9790-09bd3f55d1a3
 		summarizeBy: none
 
+	column forma_pagamento_en = LOOKUPVALUE ( TradValores[en], TradValores[atributo], "forma_pagamento", TradValores[pt], pedidos[forma_pagamento], pedidos[forma_pagamento] )
+		dataType: string
+		isHidden
+		lineageTag: f8c1b4e5-b7a9-4e81-b04e-d15c197b593c
+		summarizeBy: none
+
+	column tipo_frete_en = LOOKUPVALUE ( TradValores[en], TradValores[atributo], "tipo_frete", TradValores[pt], pedidos[tipo_frete], pedidos[tipo_frete] )
+		dataType: string
+		isHidden
+		lineageTag: 445d7119-43f6-49f0-9577-ed27bbfc8b6c
+		summarizeBy: none
+
+	column motivo_insucesso_en = LOOKUPVALUE ( TradValores[en], TradValores[atributo], "motivo_insucesso", TradValores[pt], pedidos[motivo_insucesso], pedidos[motivo_insucesso] )
+		dataType: string
+		isHidden
+		lineageTag: 96f13976-8a12-4f6a-8874-f40349615fc3
+		summarizeBy: none
+
+	column FaixaPrazoEN = LOOKUPVALUE ( TradValores[en], TradValores[atributo], "FaixaPrazo", TradValores[pt], pedidos[FaixaPrazo], pedidos[FaixaPrazo] )
+		dataType: string
+		isHidden
+		lineageTag: 96eb82ee-7ad0-4ba0-93f0-9504cffc18d0
+		summarizeBy: none
+		sortByColumn: FaixaPrazoOrdem
+
+	column FaixaVariacaoEN = LOOKUPVALUE ( TradValores[en], TradValores[atributo], "FaixaVariacao", TradValores[pt], pedidos[FaixaVariacao], pedidos[FaixaVariacao] )
+		dataType: string
+		isHidden
+		lineageTag: 55f6e22b-b565-4ca3-91bc-5fcb6f8b46b2
+		summarizeBy: none
+		sortByColumn: FaixaVariacaoOrdem
+
 	partition pedidos = m
 		mode: import
 		source =

@@ -1,0 +1,50 @@
+table FP_Previsto
+	lineageTag: a9a32e76-e417-4965-8695-ceef156abd1a
+
+	column FP_Previsto
+		dataType: string
+		lineageTag: e8f34422-89f3-43b4-a5e8-6ad60c2cffa9
+		summarizeBy: none
+		sourceColumn: [Value1]
+		sortByColumn: FP_Previsto_Ordem
+
+		relatedColumnDetails
+			groupByColumn: FP_Previsto_Campos
+
+	column FP_Previsto_Campos
+		dataType: string
+		isHidden
+		lineageTag: 355a3be5-e8ad-4117-aa8b-21c4fa2a28d0
+		summarizeBy: none
+		sourceColumn: [Value2]
+		sortByColumn: FP_Previsto_Ordem
+
+		extendedProperty ParameterMetadata =
+				{
+				  "version": 3,
+				  "kind": 2
+				}
+
+	column FP_Previsto_Ordem
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: 52275e97-8443-45f4-a370-9bdc361c815d
+		summarizeBy: none
+		sourceColumn: [Value3]
+
+	column Idioma
+		dataType: string
+		isHidden
+		lineageTag: a4063b6c-95e6-4eff-b61e-a317a8f3971f
+		summarizeBy: none
+		sourceColumn: [Value4]
+
+	partition FP_Previsto = calculated
+		mode: import
+		source =
+				{
+				    ("Previsto", NAMEOF ( 'previsoes'[previsto] ), 0, "PT-BR"),
+				    ("Predicted", NAMEOF ( 'previsoes'[previsto_en] ), 1, "EN")
+				}
+

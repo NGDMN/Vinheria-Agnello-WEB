@@ -27,3 +27,55 @@ relationship previsoes_pedidos
 	fromColumn: previsoes.id_pedido
 	toColumn: pedidos.id_pedido
 
+relationship FP_Mes_Idioma
+	fromColumn: FP_Mes.Idioma
+	toColumn: Idioma.Idioma
+
+relationship FP_Regiao_Idioma
+	fromColumn: FP_Regiao.Idioma
+	toColumn: Idioma.Idioma
+
+relationship FP_TipoVinho_Idioma
+	fromColumn: FP_TipoVinho.Idioma
+	toColumn: Idioma.Idioma
+
+relationship FP_TipoCliente_Idioma
+	fromColumn: FP_TipoCliente.Idioma
+	toColumn: Idioma.Idioma
+
+relationship FP_Pagamento_Idioma
+	fromColumn: FP_Pagamento.Idioma
+	toColumn: Idioma.Idioma
+
+relationship FP_Frete_Idioma
+	fromColumn: FP_Frete.Idioma
+	toColumn: Idioma.Idioma
+
+relationship FP_Motivo_Idioma
+	fromColumn: FP_Motivo.Idioma
+	toColumn: Idioma.Idioma
+
+relationship FP_FaixaPrazo_Idioma
+	fromColumn: FP_FaixaPrazo.Idioma
+	toColumn: Idioma.Idioma
+
+relationship FP_FaixaVariacao_Idioma
+	fromColumn: FP_FaixaVariacao.Idioma
+	toColumn: Idioma.Idioma
+
+relationship FP_Real_Idioma
+	fromColumn: FP_Real.Idioma
+	toColumn: Idioma.Idioma
+
+relationship FP_Previsto_Idioma
+	fromColumn: FP_Previsto.Idioma
+	toColumn: Idioma.Idioma
+
+relationship FP_FaixaRisco_Idioma
+	fromColumn: FP_FaixaRisco.Idioma
+	toColumn: Idioma.Idioma
+
+relationship FP_TabelaAguardando_Idioma
+	fromColumn: FP_TabelaAguardando.Idioma
+	toColumn: Idioma.Idioma
+

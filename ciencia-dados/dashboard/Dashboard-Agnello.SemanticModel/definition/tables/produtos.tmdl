@@ -33,6 +33,12 @@ table produtos
 		summarizeBy: none
 		sourceColumn: preco_unitario
 
+	column tipo_vinho_en = LOOKUPVALUE ( TradValores[en], TradValores[atributo], "tipo_vinho", TradValores[pt], produtos[tipo_vinho], produtos[tipo_vinho] )
+		dataType: string
+		isHidden
+		lineageTag: 0f9b4eb5-e2ca-4102-9195-f15d7305d6a4
+		summarizeBy: none
+
 	partition produtos = m
 		mode: import
 		source = fnCarregarAba("produtos", {{"id_produto", Int64.Type}, {"nome_vinho", type text}, {"tipo_vinho", type text}, {"pais_origem", type text}, {"preco_unitario", Currency.Type}})

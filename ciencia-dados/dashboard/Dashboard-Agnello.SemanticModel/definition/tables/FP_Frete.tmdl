@@ -1,0 +1,50 @@
+table FP_Frete
+	lineageTag: ab4354ec-2ebe-4dd9-9c4b-81d50f35b4bb
+
+	column FP_Frete
+		dataType: string
+		lineageTag: 23539349-3032-4250-a602-46ef5b8f22e4
+		summarizeBy: none
+		sourceColumn: [Value1]
+		sortByColumn: FP_Frete_Ordem
+
+		relatedColumnDetails
+			groupByColumn: FP_Frete_Campos
+
+	column FP_Frete_Campos
+		dataType: string
+		isHidden
+		lineageTag: 527f4238-42b3-41ee-8709-54ca2c8f8ca1
+		summarizeBy: none
+		sourceColumn: [Value2]
+		sortByColumn: FP_Frete_Ordem
+
+		extendedProperty ParameterMetadata =
+				{
+				  "version": 3,
+				  "kind": 2
+				}
+
+	column FP_Frete_Ordem
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: 727c20e1-21ed-49c2-833d-3a9bef5f8f81
+		summarizeBy: none
+		sourceColumn: [Value3]
+
+	column Idioma
+		dataType: string
+		isHidden
+		lineageTag: 11e1e6a7-540c-433a-a7ed-a773a065b762
+		summarizeBy: none
+		sourceColumn: [Value4]
+
+	partition FP_Frete = calculated
+		mode: import
+		source =
+				{
+				    ("Tipo de frete", NAMEOF ( 'pedidos'[tipo_frete] ), 0, "PT-BR"),
+				    ("Shipping type", NAMEOF ( 'pedidos'[tipo_frete_en] ), 1, "EN")
+				}
+

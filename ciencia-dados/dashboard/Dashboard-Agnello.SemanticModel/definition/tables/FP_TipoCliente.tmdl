@@ -1,0 +1,50 @@
+table FP_TipoCliente
+	lineageTag: bc1cc32e-dd44-494f-bf65-e795210ace49
+
+	column FP_TipoCliente
+		dataType: string
+		lineageTag: d5a8d0ef-2dae-4cd0-97c0-152294f749bd
+		summarizeBy: none
+		sourceColumn: [Value1]
+		sortByColumn: FP_TipoCliente_Ordem
+
+		relatedColumnDetails
+			groupByColumn: FP_TipoCliente_Campos
+
+	column FP_TipoCliente_Campos
+		dataType: string
+		isHidden
+		lineageTag: e0fe4adc-d491-4076-b2cd-87d168f021ef
+		summarizeBy: none
+		sourceColumn: [Value2]
+		sortByColumn: FP_TipoCliente_Ordem
+
+		extendedProperty ParameterMetadata =
+				{
+				  "version": 3,
+				  "kind": 2
+				}
+
+	column FP_TipoCliente_Ordem
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: 81a5cfdb-0201-41a0-8a5f-20af71444a22
+		summarizeBy: none
+		sourceColumn: [Value3]
+
+	column Idioma
+		dataType: string
+		isHidden
+		lineageTag: c80d37a7-eeda-4d63-ba9a-af795a5b58b2
+		summarizeBy: none
+		sourceColumn: [Value4]
+
+	partition FP_TipoCliente = calculated
+		mode: import
+		source =
+				{
+				    ("Tipo de cliente", NAMEOF ( 'clientes'[tipo_cliente] ), 0, "PT-BR"),
+				    ("Customer type", NAMEOF ( 'clientes'[tipo_cliente_en] ), 1, "EN")
+				}
+

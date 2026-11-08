@@ -1,0 +1,50 @@
+table FP_TipoVinho
+	lineageTag: 5db2c7ca-3693-4f9b-b8fe-71ecfd1f51fa
+
+	column FP_TipoVinho
+		dataType: string
+		lineageTag: 72509ce2-bf28-4c7d-be12-98f179e598a5
+		summarizeBy: none
+		sourceColumn: [Value1]
+		sortByColumn: FP_TipoVinho_Ordem
+
+		relatedColumnDetails
+			groupByColumn: FP_TipoVinho_Campos
+
+	column FP_TipoVinho_Campos
+		dataType: string
+		isHidden
+		lineageTag: fafd7dea-af3e-49ea-8326-8bd445ccceb0
+		summarizeBy: none
+		sourceColumn: [Value2]
+		sortByColumn: FP_TipoVinho_Ordem
+
+		extendedProperty ParameterMetadata =
+				{
+				  "version": 3,
+				  "kind": 2
+				}
+
+	column FP_TipoVinho_Ordem
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: a6e73468-01e4-4caa-8469-a4ec80bd1d68
+		summarizeBy: none
+		sourceColumn: [Value3]
+
+	column Idioma
+		dataType: string
+		isHidden
+		lineageTag: 0fdb26a1-7016-4b82-929f-99b1f95bc59f
+		summarizeBy: none
+		sourceColumn: [Value4]
+
+	partition FP_TipoVinho = calculated
+		mode: import
+		source =
+				{
+				    ("Tipo de vinho", NAMEOF ( 'produtos'[tipo_vinho] ), 0, "PT-BR"),
+				    ("Wine type", NAMEOF ( 'produtos'[tipo_vinho_en] ), 1, "EN")
+				}
+

@@ -1,0 +1,50 @@
+table FP_Regiao
+	lineageTag: d41e8df7-47a6-428e-88cc-a212d81be276
+
+	column FP_Regiao
+		dataType: string
+		lineageTag: 0af30fc8-c87f-495e-b20a-17b4e335d977
+		summarizeBy: none
+		sourceColumn: [Value1]
+		sortByColumn: FP_Regiao_Ordem
+
+		relatedColumnDetails
+			groupByColumn: FP_Regiao_Campos
+
+	column FP_Regiao_Campos
+		dataType: string
+		isHidden
+		lineageTag: cce247b9-37f2-4cfc-9be9-53f9ccd6b83d
+		summarizeBy: none
+		sourceColumn: [Value2]
+		sortByColumn: FP_Regiao_Ordem
+
+		extendedProperty ParameterMetadata =
+				{
+				  "version": 3,
+				  "kind": 2
+				}
+
+	column FP_Regiao_Ordem
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: f0ced103-b8e1-408c-85b9-c75fd4d9de06
+		summarizeBy: none
+		sourceColumn: [Value3]
+
+	column Idioma
+		dataType: string
+		isHidden
+		lineageTag: 4875fd45-ef20-4ba6-bca5-a99d2141926d
+		summarizeBy: none
+		sourceColumn: [Value4]
+
+	partition FP_Regiao = calculated
+		mode: import
+		source =
+				{
+				    ("Região", NAMEOF ( 'regioes'[regiao] ), 0, "PT-BR"),
+				    ("Region", NAMEOF ( 'regioes'[regiao_en] ), 1, "EN")
+				}
+

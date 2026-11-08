@@ -1,0 +1,50 @@
+table FP_FaixaRisco
+	lineageTag: 960ef9d0-774c-492b-b279-6babeb8cea3b
+
+	column FP_FaixaRisco
+		dataType: string
+		lineageTag: b0ecd4ba-e51c-4a5c-ac59-4ae71a620cb5
+		summarizeBy: none
+		sourceColumn: [Value1]
+		sortByColumn: FP_FaixaRisco_Ordem
+
+		relatedColumnDetails
+			groupByColumn: FP_FaixaRisco_Campos
+
+	column FP_FaixaRisco_Campos
+		dataType: string
+		isHidden
+		lineageTag: f0e04cd7-73e8-4f19-9be2-4a3c032e4752
+		summarizeBy: none
+		sourceColumn: [Value2]
+		sortByColumn: FP_FaixaRisco_Ordem
+
+		extendedProperty ParameterMetadata =
+				{
+				  "version": 3,
+				  "kind": 2
+				}
+
+	column FP_FaixaRisco_Ordem
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: fed23764-0e8f-4437-8e25-a250e00cdd48
+		summarizeBy: none
+		sourceColumn: [Value3]
+
+	column Idioma
+		dataType: string
+		isHidden
+		lineageTag: b295d824-6b11-4548-80de-7497f331692f
+		summarizeBy: none
+		sourceColumn: [Value4]
+
+	partition FP_FaixaRisco = calculated
+		mode: import
+		source =
+				{
+				    ("Faixa de risco", NAMEOF ( 'previsoes'[faixa_risco_pt] ), 0, "PT-BR"),
+				    ("Risk level", NAMEOF ( 'previsoes'[faixa_risco_en] ), 1, "EN")
+				}
+

@@ -1,0 +1,50 @@
+table FP_Mes
+	lineageTag: e5cdc119-b06e-4617-8e13-b93da6a65445
+
+	column FP_Mes
+		dataType: string
+		lineageTag: 866ff38a-9bfe-4439-b180-d2079d1f00b0
+		summarizeBy: none
+		sourceColumn: [Value1]
+		sortByColumn: FP_Mes_Ordem
+
+		relatedColumnDetails
+			groupByColumn: FP_Mes_Campos
+
+	column FP_Mes_Campos
+		dataType: string
+		isHidden
+		lineageTag: b4fd8657-580f-437c-8dfc-73de1a61546a
+		summarizeBy: none
+		sourceColumn: [Value2]
+		sortByColumn: FP_Mes_Ordem
+
+		extendedProperty ParameterMetadata =
+				{
+				  "version": 3,
+				  "kind": 2
+				}
+
+	column FP_Mes_Ordem
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: 84df5252-1aab-40f7-8c92-80e20f6ad70f
+		summarizeBy: none
+		sourceColumn: [Value3]
+
+	column Idioma
+		dataType: string
+		isHidden
+		lineageTag: 349d4319-3a62-42ca-8786-ce5bee2cdd80
+		summarizeBy: none
+		sourceColumn: [Value4]
+
+	partition FP_Mes = calculated
+		mode: import
+		source =
+				{
+				    ("Mês", NAMEOF ( 'Calendario'[MesAno] ), 0, "PT-BR"),
+				    ("Month", NAMEOF ( 'Calendario'[MesAnoEN] ), 1, "EN")
+				}
+

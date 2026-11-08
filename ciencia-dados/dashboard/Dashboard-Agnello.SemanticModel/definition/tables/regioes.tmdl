@@ -13,6 +13,12 @@ table regioes
 		summarizeBy: none
 		sourceColumn: regiao
 
+	column regiao_en = LOOKUPVALUE ( TradValores[en], TradValores[atributo], "regiao", TradValores[pt], regioes[regiao], regioes[regiao] )
+		dataType: string
+		isHidden
+		lineageTag: b0e1246d-164d-43aa-8aa7-3726647d5d65
+		summarizeBy: none
+
 	partition regioes = m
 		mode: import
 		source = fnCarregarAba("regioes", {{"uf", type text}, {"regiao", type text}})

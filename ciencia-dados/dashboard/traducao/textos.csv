@@ -1,0 +1,39 @@
+﻿chave;pt;en
+Nav Visao Geral;Visão geral;Overview
+Nav Padroes Excecoes;Padrões e exceções;Patterns and exceptions
+Nav Modelo;Modelo preditivo;Predictive model
+Sub Visao Geral;Receita, conversão e mix de produtos;Revenue, conversion and product mix
+Sub Padroes Excecoes;O que aumenta ou reduz a chance de o pedido ser pago, e o que foge do padrão;What raises or lowers the chance an order gets paid, and what breaks the pattern
+Sub Modelo;Árvore de decisão: quais pedidos merecem ação preventiva (métricas sobre o conjunto de teste);Decision tree: which orders call for preventive action (metrics on the test set)
+Rodape;Fonte: base simulada da Vinheria Agnello (out/2024 a out/2026), com out/2026 parcial;Source: Vinheria Agnello simulated dataset (Oct 2024 to Oct 2026), Oct 2026 partial
+Btn Limpar Filtros;Limpar filtros;Clear filters
+Seg Idioma;Idioma;Language
+Seg Periodo;Período;Period
+Seg Produto;Produto;Product
+Seg Regiao;Região;Region
+Seg Frete;Frete;Shipping
+Seg Pagamento;Forma de pagamento;Payment method
+Seg Canal;Canal de atendimento;Sales channel
+Seg Cliente;Cliente;Customer
+Seg Prazo;Prazo de entrega;Delivery time
+Seg Variacao;Variação da última compra;Change vs last purchase
+Kpi Receita Paga;Receita paga;Paid revenue
+Kpi Conversao;Taxa de conversão;Conversion rate
+Kpi Ticket;Ticket médio;Average order value
+Kpi Receita Perdida;Receita perdida;Lost revenue
+Kpi Acuracia Balanceada;Acurácia balanceada (teste);Balanced accuracy (test)
+Kpi Recall;Não pagos identificados;Unpaid orders detected
+Kpi Precisao;Acerto dos alertas;Alert precision
+Kpi Risco;Aguardando em risco;Pending orders at risk
+Vs Ano Anterior;vs ano anterior;vs prior year
+Vis Receita Mensal;Receita paga (colunas) e conversão (linha) por mês;Paid revenue (bars) and conversion (line) by month
+Vis Conversao Regiao;Conversão por região;Conversion by region
+Vis Receita Tipo;Receita paga por tipo de vinho;Paid revenue by wine type
+Vis Pagamento Frete;Conversão por forma de pagamento e frete;Conversion by payment method and shipping
+Vis Motivo;Receita perdida por motivo de não pagamento;Lost revenue by non-payment reason
+Vis Conversao Prazo;Conversão por prazo de entrega;Conversion by delivery time
+Vis Conversao Variacao;Conversão por variação do pedido (PF × PJ);Conversion by order change (individual × business)
+Vis Miolo;Garrafas vendidas do Miolo Lote 43 (esgotado desde ago/2026);Bottles sold of Miolo Lote 43 (out of stock since Aug 2026)
+Vis Matriz Confusao;Matriz de confusão (teste): real × previsto;Confusion matrix (test): actual × predicted
+Vis Risco Faixa;Não pagamento real por faixa de risco (teste);Actual non-payment by risk level (test)
+Vis Aguardando;Pedidos aguardando pagamento: prioridade de contato;Orders awaiting payment: contact priority

@@ -1,0 +1,50 @@
+table FP_FaixaPrazo
+	lineageTag: 75828685-72c9-4d89-b591-7d7875433e2c
+
+	column FP_FaixaPrazo
+		dataType: string
+		lineageTag: 7e642796-c62a-4bbe-a094-0d2090f310c2
+		summarizeBy: none
+		sourceColumn: [Value1]
+		sortByColumn: FP_FaixaPrazo_Ordem
+
+		relatedColumnDetails
+			groupByColumn: FP_FaixaPrazo_Campos
+
+	column FP_FaixaPrazo_Campos
+		dataType: string
+		isHidden
+		lineageTag: f8876325-2713-4a38-9254-888f30fe2121
+		summarizeBy: none
+		sourceColumn: [Value2]
+		sortByColumn: FP_FaixaPrazo_Ordem
+
+		extendedProperty ParameterMetadata =
+				{
+				  "version": 3,
+				  "kind": 2
+				}
+
+	column FP_FaixaPrazo_Ordem
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: 4e0b6dd9-d8c9-4d90-8c75-dcdcd3cdfe42
+		summarizeBy: none
+		sourceColumn: [Value3]
+
+	column Idioma
+		dataType: string
+		isHidden
+		lineageTag: 985d0a8c-3d6f-423a-80ae-1f61acd9b327
+		summarizeBy: none
+		sourceColumn: [Value4]
+
+	partition FP_FaixaPrazo = calculated
+		mode: import
+		source =
+				{
+				    ("Prazo de entrega", NAMEOF ( 'pedidos'[FaixaPrazo] ), 0, "PT-BR"),
+				    ("Delivery time", NAMEOF ( 'pedidos'[FaixaPrazoEN] ), 1, "EN")
+				}
+

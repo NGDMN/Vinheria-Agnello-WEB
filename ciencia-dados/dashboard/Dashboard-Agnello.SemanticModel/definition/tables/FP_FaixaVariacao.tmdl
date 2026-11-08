@@ -1,0 +1,50 @@
+table FP_FaixaVariacao
+	lineageTag: ad96dfff-3c4a-4d59-aaf8-09b5e636ea9a
+
+	column FP_FaixaVariacao
+		dataType: string
+		lineageTag: 33bae1a6-1820-4529-9d83-cfaf4b2a6d37
+		summarizeBy: none
+		sourceColumn: [Value1]
+		sortByColumn: FP_FaixaVariacao_Ordem
+
+		relatedColumnDetails
+			groupByColumn: FP_FaixaVariacao_Campos
+
+	column FP_FaixaVariacao_Campos
+		dataType: string
+		isHidden
+		lineageTag: 2ae23d24-64c7-426e-ad6e-9e50d395c935
+		summarizeBy: none
+		sourceColumn: [Value2]
+		sortByColumn: FP_FaixaVariacao_Ordem
+
+		extendedProperty ParameterMetadata =
+				{
+				  "version": 3,
+				  "kind": 2
+				}
+
+	column FP_FaixaVariacao_Ordem
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: 8c71560c-49bc-44ca-9261-8c5061b5c221
+		summarizeBy: none
+		sourceColumn: [Value3]
+
+	column Idioma
+		dataType: string
+		isHidden
+		lineageTag: 8e3af8cc-468c-4ca6-8620-7ff178eae6b1
+		summarizeBy: none
+		sourceColumn: [Value4]
+
+	partition FP_FaixaVariacao = calculated
+		mode: import
+		source =
+				{
+				    ("Variação do pedido", NAMEOF ( 'pedidos'[FaixaVariacao] ), 0, "PT-BR"),
+				    ("Order change", NAMEOF ( 'pedidos'[FaixaVariacaoEN] ), 1, "EN")
+				}
+

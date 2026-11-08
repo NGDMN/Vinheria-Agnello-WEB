@@ -1,0 +1,37 @@
+﻿atributo;pt;en
+regiao;Norte;North
+regiao;Nordeste;Northeast
+regiao;Centro-Oeste;Midwest
+regiao;Sudeste;Southeast
+regiao;Sul;South
+tipo_cliente;PF;Individual
+tipo_cliente;PJ;Business
+tipo_vinho;Tinto;Red
+tipo_vinho;Branco;White
+tipo_vinho;Rosé;Rosé
+tipo_vinho;Espumante;Sparkling
+tipo_vinho;Fortificado;Fortified
+forma_pagamento;Cartão;Card
+forma_pagamento;PIX;Pix
+forma_pagamento;Boleto;Bank slip
+tipo_frete;Econômico;Economy
+tipo_frete;Expresso;Express
+tipo_frete;Same-Day;Same-day
+tipo_frete;Retirada;Pickup
+motivo_insucesso;Pagamento recusado;Payment declined
+motivo_insucesso;PIX expirado;Pix expired
+motivo_insucesso;Boleto expirado;Bank slip expired
+motivo_insucesso;Desistência;Abandoned
+FaixaPrazo;0-3 dias;0-3 days
+FaixaPrazo;4-6 dias;4-6 days
+FaixaPrazo;7-10 dias;7-10 days
+FaixaPrazo;11+ dias;11+ days
+FaixaVariacao;Primeiro pedido;First order
+FaixaVariacao;Redução;Decrease
+FaixaVariacao;Aumento até 50%;Increase up to 50%
+FaixaVariacao;Aumento acima de 50%;Increase over 50%
+previsao;Pago;Paid
+previsao;Não pago;Unpaid
+faixa_risco;Alto;High
+faixa_risco;Médio;Medium
+faixa_risco;Baixo;Low

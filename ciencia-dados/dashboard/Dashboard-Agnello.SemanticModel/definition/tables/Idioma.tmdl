@@ -1,0 +1,24 @@
+table Idioma
+	lineageTag: 978c63c9-3961-4881-b929-031ccd7e427a
+
+	column Idioma
+		dataType: string
+		lineageTag: c29525bd-14e8-45c8-a910-7aee310f0214
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Idioma]
+		sortByColumn: Ordem
+
+	column Ordem
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: 572584eb-60d2-482d-b16f-2f05a862b1b1
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Ordem]
+
+	partition Idioma = calculated
+		mode: import
+		source = DATATABLE ( "Idioma", STRING, "Ordem", INTEGER, { { "PT-BR", 1 }, { "EN", 2 } } )
+

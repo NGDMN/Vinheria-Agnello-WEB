@@ -1,0 +1,50 @@
+table FP_Motivo
+	lineageTag: 0cb0ae71-7dbc-452f-8c22-5a3211662566
+
+	column FP_Motivo
+		dataType: string
+		lineageTag: 3d736f96-2623-4c5a-b54c-91fa22887b69
+		summarizeBy: none
+		sourceColumn: [Value1]
+		sortByColumn: FP_Motivo_Ordem
+
+		relatedColumnDetails
+			groupByColumn: FP_Motivo_Campos
+
+	column FP_Motivo_Campos
+		dataType: string
+		isHidden
+		lineageTag: 43ae3498-0396-4f6c-85c7-ad1888f179de
+		summarizeBy: none
+		sourceColumn: [Value2]
+		sortByColumn: FP_Motivo_Ordem
+
+		extendedProperty ParameterMetadata =
+				{
+				  "version": 3,
+				  "kind": 2
+				}
+
+	column FP_Motivo_Ordem
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: ea397b05-f753-4d5c-b259-940970c49ad3
+		summarizeBy: none
+		sourceColumn: [Value3]
+
+	column Idioma
+		dataType: string
+		isHidden
+		lineageTag: 7a0d8180-4533-4ae4-9401-fc4c4e192f55
+		summarizeBy: none
+		sourceColumn: [Value4]
+
+	partition FP_Motivo = calculated
+		mode: import
+		source =
+				{
+				    ("Motivo", NAMEOF ( 'pedidos'[motivo_insucesso] ), 0, "PT-BR"),
+				    ("Reason", NAMEOF ( 'pedidos'[motivo_insucesso_en] ), 1, "EN")
+				}
+

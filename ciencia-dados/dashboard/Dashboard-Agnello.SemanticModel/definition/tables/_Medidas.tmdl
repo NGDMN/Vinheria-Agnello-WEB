@@ -79,7 +79,7 @@ table _Medidas
 		formatString: 0.0%
 		lineageTag: 4c88f833-0f3b-4918-b468-365814acb2ca
 
-	measure 'Var Receita AA Texto' = IF ( ISBLANK ( [Var Receita AA] ), BLANK (), IF ( [Var Receita AA] >= 0, "▲ ", "▼ " ) & FORMAT ( [Var Receita AA], "0.0%" ) & " vs ano anterior" )
+	measure 'Var Receita AA Texto' = IF ( ISBLANK ( [Var Receita AA] ), BLANK (), IF ( [Var Receita AA] >= 0, "▲ ", "▼ " ) & FORMAT ( [Var Receita AA], "0.0%", [Locale Selecionado] ) & " " & [Txt Vs Ano Anterior] )
 		lineageTag: 531907de-02cf-4c6e-a0e0-14a2811a88f4
 
 	measure 'Var Receita AA Cor' = IF ( [Var Receita AA] >= 0, "#2E6B3A", "#B3261E" )
@@ -107,14 +107,214 @@ table _Medidas
 
 	measure 'Acuracia Balanceada' = VAR TP = CALCULATE ( COUNTROWS ( previsoes ), previsoes[conjunto] = "Teste", previsoes[real] = "Não pago", previsoes[previsto] = "Não pago" ) VAR P = CALCULATE ( COUNTROWS ( previsoes ), previsoes[conjunto] = "Teste", previsoes[real] = "Não pago" ) VAR TN = CALCULATE ( COUNTROWS ( previsoes ), previsoes[conjunto] = "Teste", previsoes[real] = "Pago", previsoes[previsto] = "Pago" ) VAR N = CALCULATE ( COUNTROWS ( previsoes ), previsoes[conjunto] = "Teste", previsoes[real] = "Pago" ) RETURN DIVIDE ( DIVIDE ( TP, P ) + DIVIDE ( TN, N ), 2 )
 		formatString: 0.0%
+		lineageTag: 1209a171-b605-4f4f-87b3-03717cbbb982
 
 	measure 'Taxa Nao Pagamento Teste' = DIVIDE ( CALCULATE ( COUNTROWS ( previsoes ), previsoes[conjunto] = "Teste", previsoes[real] = "Não pago" ), CALCULATE ( COUNTROWS ( previsoes ), previsoes[conjunto] = "Teste" ) )
 		formatString: 0.0%
+		lineageTag: 794fa926-b39a-4121-84a4-fc382d48eda7
 
 	measure 'Prob Nao Pagamento' = MAX ( previsoes[prob_nao_pagamento] )
 		formatString: 0.0%
+		lineageTag: 7c857ce8-2598-49c1-99d4-660c7c496c76
 
 	measure 'Faixa Risco Pedido' = SELECTEDVALUE ( previsoes[faixa_risco] )
+		lineageTag: c40dee27-8cb4-4b2e-93f0-4648191c8ec0
+
+	measure 'Idioma Selecionado' = SELECTEDVALUE ( Idioma[Idioma], "PT-BR" )
+		displayFolder: Tradução
+		lineageTag: 7858bec9-5cf3-4d88-bb43-635a1fa3574c
+
+	measure 'Locale Selecionado' = IF ( [Idioma Selecionado] = "EN", "en-US", "pt-BR" )
+		displayFolder: Tradução
+		lineageTag: 200bddf6-cd25-405c-b473-284b8963ccea
+
+	measure 'Faixa Risco Pedido EN' = LOOKUPVALUE ( TradValores[en], TradValores[atributo], "faixa_risco", TradValores[pt], [Faixa Risco Pedido], [Faixa Risco Pedido] )
+		displayFolder: Tradução
+		lineageTag: 99d28b2a-078f-4816-a001-315884725123
+
+	measure 'Txt Nav Visao Geral' = LOOKUPVALUE ( TradTextos[Texto], TradTextos[chave], "Nav Visao Geral", TradTextos[Idioma], [Idioma Selecionado] )
+		displayFolder: Tradução\Textos
+		lineageTag: d54c8ada-3cad-43e3-bc11-34e70ba7d6bb
+
+	measure 'Txt Nav Padroes Excecoes' = LOOKUPVALUE ( TradTextos[Texto], TradTextos[chave], "Nav Padroes Excecoes", TradTextos[Idioma], [Idioma Selecionado] )
+		displayFolder: Tradução\Textos
+		lineageTag: f9db5a42-9ffb-4dbb-a7e1-d877c6a08c53
+
+	measure 'Txt Nav Modelo' = LOOKUPVALUE ( TradTextos[Texto], TradTextos[chave], "Nav Modelo", TradTextos[Idioma], [Idioma Selecionado] )
+		displayFolder: Tradução\Textos
+		lineageTag: dd8970a6-83aa-42db-ab16-58fe9fc8f9be
+
+	measure 'Txt Sub Visao Geral' = LOOKUPVALUE ( TradTextos[Texto], TradTextos[chave], "Sub Visao Geral", TradTextos[Idioma], [Idioma Selecionado] )
+		displayFolder: Tradução\Textos
+		lineageTag: 4cb67962-6245-44f9-8b53-d0be51dd4cee
+
+	measure 'Txt Sub Padroes Excecoes' = LOOKUPVALUE ( TradTextos[Texto], TradTextos[chave], "Sub Padroes Excecoes", TradTextos[Idioma], [Idioma Selecionado] )
+		displayFolder: Tradução\Textos
+		lineageTag: c69080d3-c5a2-43da-a8ad-fbae2642fd68
+
+	measure 'Txt Sub Modelo' = LOOKUPVALUE ( TradTextos[Texto], TradTextos[chave], "Sub Modelo", TradTextos[Idioma], [Idioma Selecionado] )
+		displayFolder: Tradução\Textos
+		lineageTag: 07be975a-6348-4df7-8744-e24f6d3b26f8
+
+	measure 'Txt Rodape' = LOOKUPVALUE ( TradTextos[Texto], TradTextos[chave], "Rodape", TradTextos[Idioma], [Idioma Selecionado] )
+		displayFolder: Tradução\Textos
+		lineageTag: f04364b0-e74f-4e50-9614-ea50ac66a21b
+
+	measure 'Txt Btn Limpar Filtros' = LOOKUPVALUE ( TradTextos[Texto], TradTextos[chave], "Btn Limpar Filtros", TradTextos[Idioma], [Idioma Selecionado] )
+		displayFolder: Tradução\Textos
+		lineageTag: 8ba68e63-355f-41a9-ab9c-b96bd3d2a1b6
+
+	measure 'Txt Seg Idioma' = LOOKUPVALUE ( TradTextos[Texto], TradTextos[chave], "Seg Idioma", TradTextos[Idioma], [Idioma Selecionado] )
+		displayFolder: Tradução\Textos
+		lineageTag: 2bb3089b-12a9-4473-9823-1164b65ca187
+
+	measure 'Txt Seg Periodo' = LOOKUPVALUE ( TradTextos[Texto], TradTextos[chave], "Seg Periodo", TradTextos[Idioma], [Idioma Selecionado] )
+		displayFolder: Tradução\Textos
+		lineageTag: 9151d6d6-3d55-427c-8b65-ca713147900b
+
+	measure 'Txt Seg Produto' = LOOKUPVALUE ( TradTextos[Texto], TradTextos[chave], "Seg Produto", TradTextos[Idioma], [Idioma Selecionado] )
+		displayFolder: Tradução\Textos
+		lineageTag: c7d729aa-cdf2-414d-9ad2-51f46ea1c88f
+
+	measure 'Txt Seg Regiao' = LOOKUPVALUE ( TradTextos[Texto], TradTextos[chave], "Seg Regiao", TradTextos[Idioma], [Idioma Selecionado] )
+		displayFolder: Tradução\Textos
+		lineageTag: 09df4ec5-cc5d-4035-914b-02c79ba48206
+
+	measure 'Txt Seg Frete' = LOOKUPVALUE ( TradTextos[Texto], TradTextos[chave], "Seg Frete", TradTextos[Idioma], [Idioma Selecionado] )
+		displayFolder: Tradução\Textos
+		lineageTag: 8b7065b2-a28d-4de1-acf4-a778bf10a5fa
+
+	measure 'Txt Seg Pagamento' = LOOKUPVALUE ( TradTextos[Texto], TradTextos[chave], "Seg Pagamento", TradTextos[Idioma], [Idioma Selecionado] )
+		displayFolder: Tradução\Textos
+		lineageTag: 7d59ec89-ee6b-4614-8095-19363ef7f41e
+
+	measure 'Txt Seg Canal' = LOOKUPVALUE ( TradTextos[Texto], TradTextos[chave], "Seg Canal", TradTextos[Idioma], [Idioma Selecionado] )
+		displayFolder: Tradução\Textos
+		lineageTag: 90962207-1335-4bfd-9c23-cd8a8f106093
+
+	measure 'Txt Seg Cliente' = LOOKUPVALUE ( TradTextos[Texto], TradTextos[chave], "Seg Cliente", TradTextos[Idioma], [Idioma Selecionado] )
+		displayFolder: Tradução\Textos
+		lineageTag: a642e1fa-72e1-4294-a49c-d329fb04b535
+
+	measure 'Txt Seg Prazo' = LOOKUPVALUE ( TradTextos[Texto], TradTextos[chave], "Seg Prazo", TradTextos[Idioma], [Idioma Selecionado] )
+		displayFolder: Tradução\Textos
+		lineageTag: 876df3e0-a0c8-42c1-ad29-84e64cb3555c
+
+	measure 'Txt Seg Variacao' = LOOKUPVALUE ( TradTextos[Texto], TradTextos[chave], "Seg Variacao", TradTextos[Idioma], [Idioma Selecionado] )
+		displayFolder: Tradução\Textos
+		lineageTag: 7153fe95-3e9f-4553-bbcd-cac7c2efae3c
+
+	measure 'Txt Kpi Receita Paga' = LOOKUPVALUE ( TradTextos[Texto], TradTextos[chave], "Kpi Receita Paga", TradTextos[Idioma], [Idioma Selecionado] )
+		displayFolder: Tradução\Textos
+		lineageTag: 44dfc0aa-1c0a-4e88-8d62-f2d63691242a
+
+	measure 'Txt Kpi Conversao' = LOOKUPVALUE ( TradTextos[Texto], TradTextos[chave], "Kpi Conversao", TradTextos[Idioma], [Idioma Selecionado] )
+		displayFolder: Tradução\Textos
+		lineageTag: cf91ceb3-d65a-4c26-9a0d-5eea055bc50b
+
+	measure 'Txt Kpi Ticket' = LOOKUPVALUE ( TradTextos[Texto], TradTextos[chave], "Kpi Ticket", TradTextos[Idioma], [Idioma Selecionado] )
+		displayFolder: Tradução\Textos
+		lineageTag: a81c29f5-d172-4ca3-8dc0-101665230947
+
+	measure 'Txt Kpi Receita Perdida' = LOOKUPVALUE ( TradTextos[Texto], TradTextos[chave], "Kpi Receita Perdida", TradTextos[Idioma], [Idioma Selecionado] )
+		displayFolder: Tradução\Textos
+		lineageTag: cf73f1a3-318f-45f1-ace0-1f999272a1a6
+
+	measure 'Txt Kpi Acuracia Balanceada' = LOOKUPVALUE ( TradTextos[Texto], TradTextos[chave], "Kpi Acuracia Balanceada", TradTextos[Idioma], [Idioma Selecionado] )
+		displayFolder: Tradução\Textos
+		lineageTag: a903c44a-1b36-4a65-be04-0cfc3fabfac8
+
+	measure 'Txt Kpi Recall' = LOOKUPVALUE ( TradTextos[Texto], TradTextos[chave], "Kpi Recall", TradTextos[Idioma], [Idioma Selecionado] )
+		displayFolder: Tradução\Textos
+		lineageTag: e3c5102b-1f16-43e8-b97f-c50afb6dd3bc
+
+	measure 'Txt Kpi Precisao' = LOOKUPVALUE ( TradTextos[Texto], TradTextos[chave], "Kpi Precisao", TradTextos[Idioma], [Idioma Selecionado] )
+		displayFolder: Tradução\Textos
+		lineageTag: d8c32ff6-fcd2-4b95-8c8b-58c976239b67
+
+	measure 'Txt Kpi Risco' = LOOKUPVALUE ( TradTextos[Texto], TradTextos[chave], "Kpi Risco", TradTextos[Idioma], [Idioma Selecionado] )
+		displayFolder: Tradução\Textos
+		lineageTag: db9986e2-8b7f-496a-928a-69c8ecd23d15
+
+	measure 'Txt Vs Ano Anterior' = LOOKUPVALUE ( TradTextos[Texto], TradTextos[chave], "Vs Ano Anterior", TradTextos[Idioma], [Idioma Selecionado] )
+		displayFolder: Tradução\Textos
+		lineageTag: e75a0f1f-6cd1-4ca4-8d90-fa2b95f7a44d
+
+	measure 'Txt Vis Receita Mensal' = LOOKUPVALUE ( TradTextos[Texto], TradTextos[chave], "Vis Receita Mensal", TradTextos[Idioma], [Idioma Selecionado] )
+		displayFolder: Tradução\Textos
+		lineageTag: 00f958d5-25c2-4ce7-9622-2c48c1440d89
+
+	measure 'Txt Vis Conversao Regiao' = LOOKUPVALUE ( TradTextos[Texto], TradTextos[chave], "Vis Conversao Regiao", TradTextos[Idioma], [Idioma Selecionado] )
+		displayFolder: Tradução\Textos
+		lineageTag: 1443bfb4-c3ba-4cd6-aedf-ab2f10cc8430
+
+	measure 'Txt Vis Receita Tipo' = LOOKUPVALUE ( TradTextos[Texto], TradTextos[chave], "Vis Receita Tipo", TradTextos[Idioma], [Idioma Selecionado] )
+		displayFolder: Tradução\Textos
+		lineageTag: d631df4d-6599-4e87-9ad2-72d848d617cd
+
+	measure 'Txt Vis Pagamento Frete' = LOOKUPVALUE ( TradTextos[Texto], TradTextos[chave], "Vis Pagamento Frete", TradTextos[Idioma], [Idioma Selecionado] )
+		displayFolder: Tradução\Textos
+		lineageTag: de47da2e-9cf1-4180-877c-a863dc95d9c4
+
+	measure 'Txt Vis Motivo' = LOOKUPVALUE ( TradTextos[Texto], TradTextos[chave], "Vis Motivo", TradTextos[Idioma], [Idioma Selecionado] )
+		displayFolder: Tradução\Textos
+		lineageTag: 9441383a-98ab-46cf-9c3c-a0d427461f21
+
+	measure 'Txt Vis Conversao Prazo' = LOOKUPVALUE ( TradTextos[Texto], TradTextos[chave], "Vis Conversao Prazo", TradTextos[Idioma], [Idioma Selecionado] )
+		displayFolder: Tradução\Textos
+		lineageTag: db9b64aa-b27b-4b5f-91e6-3e9db7d1e81c
+
+	measure 'Txt Vis Conversao Variacao' = LOOKUPVALUE ( TradTextos[Texto], TradTextos[chave], "Vis Conversao Variacao", TradTextos[Idioma], [Idioma Selecionado] )
+		displayFolder: Tradução\Textos
+		lineageTag: 7da826e1-7da5-4c62-8a43-06026d091273
+
+	measure 'Txt Vis Miolo' = LOOKUPVALUE ( TradTextos[Texto], TradTextos[chave], "Vis Miolo", TradTextos[Idioma], [Idioma Selecionado] )
+		displayFolder: Tradução\Textos
+		lineageTag: 741d51e7-8d36-4f56-a10b-7522e32c3b03
+
+	measure 'Txt Vis Matriz Confusao' = LOOKUPVALUE ( TradTextos[Texto], TradTextos[chave], "Vis Matriz Confusao", TradTextos[Idioma], [Idioma Selecionado] )
+		displayFolder: Tradução\Textos
+		lineageTag: 72801cf5-c2e5-4579-8217-74d7095db26c
+
+	measure 'Txt Vis Risco Faixa' = LOOKUPVALUE ( TradTextos[Texto], TradTextos[chave], "Vis Risco Faixa", TradTextos[Idioma], [Idioma Selecionado] )
+		displayFolder: Tradução\Textos
+		lineageTag: 017e7479-a825-4bc7-80b9-e8ebf22f1ce3
+
+	measure 'Txt Vis Aguardando' = LOOKUPVALUE ( TradTextos[Texto], TradTextos[chave], "Vis Aguardando", TradTextos[Idioma], [Idioma Selecionado] )
+		displayFolder: Tradução\Textos
+		lineageTag: e40852a6-d09a-4e79-a4c4-3f09e7c5e9a1
+
+	measure 'Card Receita Paga' = "R$ " & FORMAT ( [Receita Paga], "#,0", [Locale Selecionado] )
+		displayFolder: Tradução\Cards
+		lineageTag: fd52ebb4-3db8-4dcd-be6b-db71c233e0fc
+
+	measure 'Card Taxa de Conversao' = FORMAT ( [Taxa de Conversao], "0.0%", [Locale Selecionado] )
+		displayFolder: Tradução\Cards
+		lineageTag: ab4c0e19-e5f9-4ff3-9752-de33467af095
+
+	measure 'Card Ticket Medio' = "R$ " & FORMAT ( [Ticket Medio], "#,0.00", [Locale Selecionado] )
+		displayFolder: Tradução\Cards
+		lineageTag: 9ca94413-79b9-4a9f-9c4d-1a083cbd356e
+
+	measure 'Card Receita Perdida' = "R$ " & FORMAT ( [Receita Perdida], "#,0", [Locale Selecionado] )
+		displayFolder: Tradução\Cards
+		lineageTag: b0bd0f78-e7c9-4fd2-9f74-6ddb3c041d64
+
+	measure 'Card Acuracia Balanceada' = FORMAT ( [Acuracia Balanceada], "0.0%", [Locale Selecionado] )
+		displayFolder: Tradução\Cards
+		lineageTag: 30d73d78-d505-43f2-8be2-a8689dfdc7c0
+
+	measure 'Card Recall Nao Pago' = FORMAT ( [Recall Nao Pago], "0.0%", [Locale Selecionado] )
+		displayFolder: Tradução\Cards
+		lineageTag: f6c66bd1-c6c6-480f-8b1a-15a5187c62fc
+
+	measure 'Card Precisao Nao Pago' = FORMAT ( [Precisao Nao Pago], "0.0%", [Locale Selecionado] )
+		displayFolder: Tradução\Cards
+		lineageTag: 81386135-b372-46b0-b369-fe26281e0460
+
+	measure 'Card Aguardando em Risco' = FORMAT ( [Aguardando em Risco], "#,0", [Locale Selecionado] )
+		displayFolder: Tradução\Cards
+		lineageTag: b5e2917b-139d-48e8-bd8c-95d5c09cfa00
 
 	column Valor
 		dataType: int64

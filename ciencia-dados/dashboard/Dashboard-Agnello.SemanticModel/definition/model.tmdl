@@ -7,7 +7,7 @@ model Model
 		legacyRedirects
 		returnErrorValuesAsNull
 
-annotation PBI_QueryOrder = ["CaminhoPasta","fnCarregarAba","clientes","produtos","produtos_pedidos","rupturas_estoque","regioes","pedidos","previsoes"]
+annotation PBI_QueryOrder = ["CaminhoPasta","fnCarregarAba","clientes","produtos","produtos_pedidos","rupturas_estoque","regioes","pedidos","previsoes","TradTextos","TradValores"]
 
 annotation __PBI_TimeIntelligenceEnabled = 0
 
@@ -24,6 +24,22 @@ ref table regioes
 ref table pedidos
 ref table Calendario
 ref table _Medidas
+ref table Idioma
+ref table TradTextos
+ref table TradValores
+ref table FP_Mes
+ref table FP_Regiao
+ref table FP_TipoVinho
+ref table FP_TipoCliente
+ref table FP_Pagamento
+ref table FP_Frete
+ref table FP_Motivo
+ref table FP_FaixaPrazo
+ref table FP_FaixaVariacao
+ref table FP_Real
+ref table FP_Previsto
+ref table FP_FaixaRisco
+ref table FP_TabelaAguardando
 
 ref cultureInfo pt-BR
 

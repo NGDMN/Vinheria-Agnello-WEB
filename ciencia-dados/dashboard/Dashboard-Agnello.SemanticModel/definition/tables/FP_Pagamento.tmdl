@@ -1,0 +1,50 @@
+table FP_Pagamento
+	lineageTag: dea0f014-2021-423b-9996-94a9b8a318b3
+
+	column FP_Pagamento
+		dataType: string
+		lineageTag: 8b54b0e7-35de-43aa-8ebf-bd20e443aa05
+		summarizeBy: none
+		sourceColumn: [Value1]
+		sortByColumn: FP_Pagamento_Ordem
+
+		relatedColumnDetails
+			groupByColumn: FP_Pagamento_Campos
+
+	column FP_Pagamento_Campos
+		dataType: string
+		isHidden
+		lineageTag: ece3779f-10e7-422e-b9df-c36d22056af8
+		summarizeBy: none
+		sourceColumn: [Value2]
+		sortByColumn: FP_Pagamento_Ordem
+
+		extendedProperty ParameterMetadata =
+				{
+				  "version": 3,
+				  "kind": 2
+				}
+
+	column FP_Pagamento_Ordem
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: e6078d36-0723-4303-9da9-4d752815fa06
+		summarizeBy: none
+		sourceColumn: [Value3]
+
+	column Idioma
+		dataType: string
+		isHidden
+		lineageTag: 407a6e39-aa9a-427a-a76c-eb21389c9934
+		summarizeBy: none
+		sourceColumn: [Value4]
+
+	partition FP_Pagamento = calculated
+		mode: import
+		source =
+				{
+				    ("Forma de pagamento", NAMEOF ( 'pedidos'[forma_pagamento] ), 0, "PT-BR"),
+				    ("Payment method", NAMEOF ( 'pedidos'[forma_pagamento_en] ), 1, "EN")
+				}
+

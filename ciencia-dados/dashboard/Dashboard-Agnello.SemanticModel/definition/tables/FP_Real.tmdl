@@ -1,0 +1,50 @@
+table FP_Real
+	lineageTag: 7135fb5e-5c16-4d9e-92db-c8c0510c6f58
+
+	column FP_Real
+		dataType: string
+		lineageTag: f5ffa470-9180-4057-9ea6-989a1d20a81d
+		summarizeBy: none
+		sourceColumn: [Value1]
+		sortByColumn: FP_Real_Ordem
+
+		relatedColumnDetails
+			groupByColumn: FP_Real_Campos
+
+	column FP_Real_Campos
+		dataType: string
+		isHidden
+		lineageTag: 339d0abf-bf42-482b-9b36-bb17b071a9bb
+		summarizeBy: none
+		sourceColumn: [Value2]
+		sortByColumn: FP_Real_Ordem
+
+		extendedProperty ParameterMetadata =
+				{
+				  "version": 3,
+				  "kind": 2
+				}
+
+	column FP_Real_Ordem
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: a5a088be-aaef-4d1a-b896-13831f29e712
+		summarizeBy: none
+		sourceColumn: [Value3]
+
+	column Idioma
+		dataType: string
+		isHidden
+		lineageTag: 4c99a693-a86e-4961-8334-38367321e227
+		summarizeBy: none
+		sourceColumn: [Value4]
+
+	partition FP_Real = calculated
+		mode: import
+		source =
+				{
+				    ("Real", NAMEOF ( 'previsoes'[real] ), 0, "PT-BR"),
+				    ("Actual", NAMEOF ( 'previsoes'[real_en] ), 1, "EN")
+				}
+

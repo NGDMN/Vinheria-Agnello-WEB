@@ -52,6 +52,38 @@ table previsoes
 		summarizeBy: none
 		sourceColumn: faixa_risco
 
+	column real_en = LOOKUPVALUE ( TradValores[en], TradValores[atributo], "previsao", TradValores[pt], previsoes[real], previsoes[real] )
+		dataType: string
+		isHidden
+		lineageTag: 02f62bdc-82a4-446d-b610-e73995d318b8
+		summarizeBy: none
+
+	column previsto_en = LOOKUPVALUE ( TradValores[en], TradValores[atributo], "previsao", TradValores[pt], previsoes[previsto], previsoes[previsto] )
+		dataType: string
+		isHidden
+		lineageTag: 4d174182-cfa6-4f99-b617-469a4791d4c3
+		summarizeBy: none
+
+	column FaixaRiscoOrdem = SWITCH ( previsoes[faixa_risco], "Baixo", 1, "Médio", 2, "Alto", 3 )
+		dataType: int64
+		isHidden
+		lineageTag: 9d7c679e-1a0c-457a-92c6-fc3d7ff14f51
+		summarizeBy: none
+
+	column faixa_risco_pt = previsoes[faixa_risco]
+		dataType: string
+		isHidden
+		lineageTag: 7ca04809-0064-4beb-85c6-7c071bdf9999
+		summarizeBy: none
+		sortByColumn: FaixaRiscoOrdem
+
+	column faixa_risco_en = LOOKUPVALUE ( TradValores[en], TradValores[atributo], "faixa_risco", TradValores[pt], previsoes[faixa_risco], previsoes[faixa_risco] )
+		dataType: string
+		isHidden
+		lineageTag: 4833ce6f-d7bb-4c78-bf92-93f0d7e0d0f9
+		summarizeBy: none
+		sortByColumn: FaixaRiscoOrdem
+
 	partition previsoes = m
 		mode: import
 		source =

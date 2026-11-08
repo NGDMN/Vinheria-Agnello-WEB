@@ -1,0 +1,58 @@
+table FP_TabelaAguardando
+	lineageTag: 59aeca20-d9f2-4a1f-8ed5-b046ef0dd1e3
+
+	column FP_TabelaAguardando
+		dataType: string
+		lineageTag: a6fe7efb-647e-47ce-9269-0b38ea7cd080
+		summarizeBy: none
+		sourceColumn: [Value1]
+		sortByColumn: FP_TabelaAguardando_Ordem
+
+		relatedColumnDetails
+			groupByColumn: FP_TabelaAguardando_Campos
+
+	column FP_TabelaAguardando_Campos
+		dataType: string
+		isHidden
+		lineageTag: c1d0ac8c-8375-41c3-9e3d-3e681f8293df
+		summarizeBy: none
+		sourceColumn: [Value2]
+		sortByColumn: FP_TabelaAguardando_Ordem
+
+		extendedProperty ParameterMetadata =
+				{
+				  "version": 3,
+				  "kind": 2
+				}
+
+	column FP_TabelaAguardando_Ordem
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: 24783ce4-5498-493a-b5b1-9a72880fec85
+		summarizeBy: none
+		sourceColumn: [Value3]
+
+	column Idioma
+		dataType: string
+		isHidden
+		lineageTag: 7c889d39-4d46-4448-a378-b801b05bae98
+		summarizeBy: none
+		sourceColumn: [Value4]
+
+	partition FP_TabelaAguardando = calculated
+		mode: import
+		source =
+				{
+				    ("Pedido", NAMEOF ( 'pedidos'[id_pedido] ), 0, "PT-BR"),
+				    ("Pagamento", NAMEOF ( 'pedidos'[forma_pagamento] ), 1, "PT-BR"),
+				    ("Frete", NAMEOF ( 'pedidos'[tipo_frete] ), 2, "PT-BR"),
+				    ("Prob. de não pagamento", NAMEOF ( '_Medidas'[Prob Nao Pagamento] ), 3, "PT-BR"),
+				    ("Faixa de risco", NAMEOF ( '_Medidas'[Faixa Risco Pedido] ), 4, "PT-BR"),
+				    ("Order", NAMEOF ( 'pedidos'[id_pedido] ), 0, "EN"),
+				    ("Payment", NAMEOF ( 'pedidos'[forma_pagamento_en] ), 1, "EN"),
+				    ("Shipping", NAMEOF ( 'pedidos'[tipo_frete_en] ), 2, "EN"),
+				    ("Non-payment prob.", NAMEOF ( '_Medidas'[Prob Nao Pagamento] ), 3, "EN"),
+				    ("Risk level", NAMEOF ( '_Medidas'[Faixa Risco Pedido EN] ), 4, "EN")
+				}
+

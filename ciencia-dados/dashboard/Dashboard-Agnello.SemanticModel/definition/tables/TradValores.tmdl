@@ -1,0 +1,37 @@
+table TradValores
+	lineageTag: a721a1a1-ab70-4f41-8f1d-4569ad965ed8
+
+	column atributo
+		dataType: string
+		isHidden
+		lineageTag: 4f4bcdc1-5eee-4af8-bac5-523ba4d15014
+		summarizeBy: none
+		sourceColumn: atributo
+
+	column pt
+		dataType: string
+		isHidden
+		lineageTag: 745cfaef-09da-4e94-97d9-5560fa830a8f
+		summarizeBy: none
+		sourceColumn: pt
+
+	column en
+		dataType: string
+		isHidden
+		lineageTag: 6e88b95c-e3a9-49ff-8785-84200cf43b55
+		summarizeBy: none
+		sourceColumn: en
+
+	partition TradValores = m
+		mode: import
+		source =
+				let
+				    Fonte = Csv.Document(File.Contents(CaminhoPasta & "dashboard\traducao\valores.csv"), [Delimiter = ";", Encoding = 65001, QuoteStyle = QuoteStyle.Csv]),
+				    Cabecalho = Table.PromoteHeaders(Fonte, [PromoteAllScalars = true]),
+				    Ultimo = Cabecalho,
+				    Tipado = Table.TransformColumnTypes(Ultimo, {{"atributo", type text}, {"pt", type text}, {"en", type text}})
+				in
+				    Tipado
+
+	annotation PBI_ResultType = Table
+

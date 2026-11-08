@@ -49,6 +49,13 @@ table Calendario
 		isNameInferred
 		sourceColumn: [MesParcial]
 
+	column MesAnoEN = FORMAT ( Calendario[Date], "mmm/yy", "en-US" )
+		dataType: string
+		isHidden
+		lineageTag: f20079a7-c49b-4585-b546-386b4d5f3dfb
+		summarizeBy: none
+		sortByColumn: AnoMes
+
 	partition Calendario = calculated
 		mode: import
 		source =
