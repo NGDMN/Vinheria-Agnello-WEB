@@ -125,7 +125,7 @@ table pedidos
 		lineageTag: daff4cec-bd29-4624-a949-823ffe91d82e
 		summarizeBy: none
 
-	column Situacao = SWITCH ( pedidos[venda_sucesso], 1, "Pago", 0, "Não pago", "Aguardando" )
+	column Situacao = IF ( ISBLANK ( pedidos[venda_sucesso] ), "Aguardando", IF ( pedidos[venda_sucesso] = 1, "Pago", "Não pago" ) )
 		dataType: string
 		lineageTag: 152972e8-d38b-4acd-97f1-fd72ad918ada
 		summarizeBy: none

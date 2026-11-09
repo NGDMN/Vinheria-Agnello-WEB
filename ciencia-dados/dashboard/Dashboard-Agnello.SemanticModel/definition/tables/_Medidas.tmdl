@@ -21,7 +21,7 @@ table _Medidas
 		formatString: #,0.00
 		lineageTag: 78e5b54c-aabd-4da7-b910-039b92cb10cf
 
-	measure 'Receita Perdida' = CALCULATE ( SUM ( pedidos[valor_total] ), pedidos[venda_sucesso] = 0 )
+	measure 'Receita Perdida' = CALCULATE ( SUM ( pedidos[valor_total] ), pedidos[venda_sucesso] == 0 )
 		formatString: #,0.00
 		lineageTag: ce4e0591-5672-4b8e-a1db-84618d8f1833
 
